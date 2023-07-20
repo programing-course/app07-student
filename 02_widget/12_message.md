@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         width: 230,
                         child: TextField(
-                          onChanged: () {},
+                          onChanged: (String value) {},
                           maxLines: 2,
                           minLines: 1,
                         ),
