@@ -168,7 +168,7 @@ class _QuizListPageState extends State<QuizListPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text('第${_listIndex + 1}問 / ${quizlist.length}問中'),
+                  Text('第${_listIndex + 1}問 / ${_quizlistCnt}問中'),
                   SizedBox(height: 10),
                   Text(quizlist[_listIndex]['question']),
                 ],
