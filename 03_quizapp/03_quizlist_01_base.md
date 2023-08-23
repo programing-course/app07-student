@@ -14,7 +14,7 @@
 
 ```dart
 
-①quizlist.dartを作成。問題情報を記載
+// ①quizlist.dartを作成。問題情報を記載
   List<Map<String, dynamic>> quizlist = [
     {
       "question": "日本一高い山は",   //問題文

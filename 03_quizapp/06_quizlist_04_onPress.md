@@ -1,4 +1,4 @@
-# **クイズアプリを作ろう 0６**
+# **クイズアプリを作ろう 06**
 
 ## **選択肢ボタンの情報を管理しよう　QuizListPage.class**
 
@@ -26,10 +26,6 @@ class _QuizListPageState extends State<QuizListPage> {
   int _listIndex = 0;
   // ★①　選択肢ボタンの番号
   int _selectedBtn = 0;
-
-  List<Map<String, dynamic>> quizlist = [
-    // 略
-  ];
 
   @override
   Widget build(BuildContext context) {
