@@ -4,7 +4,7 @@
 
 <br>
 
-① answerSelect関数の中に、countTimerを追加  
+① answerSelect関数の中に、countTimerを追加し、タイマー初期値をリセット  
 ② 答えのボタンが押された時の処理を変更  
 ③ 変数_currentSecを表示
 
@@ -29,7 +29,8 @@
       setState(() {
         _listIndex++;
         _selectedBtn = 0;
-        // ★① answerSelect関数の中に、countTimerを追加
+        // ★① answerSelect関数の中に、countTimerを追加し、タイマー初期値をリセット
+        _currentSec = 10;
         countTimer();
       });
     }

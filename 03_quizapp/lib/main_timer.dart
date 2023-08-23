@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// StartPage
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
 
@@ -64,6 +65,7 @@ class _StartPageState extends State<StartPage> {
   }
 }
 
+// QuizListPage
 class QuizListPage extends StatefulWidget {
   const QuizListPage({super.key});
 
@@ -81,7 +83,7 @@ class _QuizListPageState extends State<QuizListPage> {
 
   String _resultText = ""; // 正解 or 不正解
 
-  // 正解 / 不正解のチェック
+  // 正解したかのチェック
   bool correctCheck(now, selected) {
     if (quizlist[now]["correct"] == selected) {
       return true;
@@ -89,7 +91,7 @@ class _QuizListPageState extends State<QuizListPage> {
     return false;
   }
 
-  // 今が最終問題かのチェック
+  // 最終問題かのチェック
   bool lastCheck(now) {
     if (now == _quizlistCnt - 1) {
       return true;
@@ -97,38 +99,39 @@ class _QuizListPageState extends State<QuizListPage> {
     return false;
   }
 
-  // タイマー初期化用関数
+  // タイマー ----------------------------------
+
+  // 初期化
   @override
   void initState() {
     super.initState();
     countTimer();
   }
 
-  // 時間切れの処理用関数
+  // タイムオーバーした時の関数
   void timeOver() async {
-    _resultText = "タイムオーバー"; // 結果の文字を「タイムオーバー」に
+    _resultText = "タイムオーバー";
 
-    // ダイアログ表示
+    //ダイアログ表示
     final rtext = await answerDialog();
-
     if (rtext != null) {
-      // ダイアログが表示されたら
+      //カウントダウンした後再読み込み
       setState(() {
-        _listIndex++; // 問題カウントを+1して次の問題へ
-        _currentSec = 10; // タイマーの制限時間をリセット
-        _selectedBtn = 0; // 選ばれた答えをリセット
+        _listIndex++;
+        _currentSec = 10;
+        _selectedBtn = 0;
         countTimer(); //タイマー再スタート
       });
     }
   }
 
-  // タイマーを起動する関数
+  // タイマー起動させる関数
   Timer countTimer() {
     return Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
+        // ボタンが押されていない場合
         if (_selectedBtn == 0) {
-          // ボタンが押されていない場合
           if (_currentSec == 0) {
             // 時間切れなら
             timer.cancel(); // タイマーをキャンセル
@@ -148,28 +151,35 @@ class _QuizListPageState extends State<QuizListPage> {
     );
   }
 
-  // 答えが選択された時の処理
+  // 選択肢のボタンが押されたとき用の関数
   void answerSelect() async {
+    // 選ばれた答えが合っているか、correctCheck関数を使い調べる
     if (correctCheck(_listIndex, _selectedBtn) == true) {
+      // 合っていたら
       _resultText = "正解！";
       _correctCnt++;
     } else {
+      // 合っていなかったら
       _resultText = "ざんねん・・・";
     }
 
+    // ポップアップを表示するための_answerDialog関数を実行
     final rtext = await answerDialog();
 
+    // ポップアップが表示されたら
     if (rtext != null) {
       setState(() {
-        _listIndex++;
-        _selectedBtn = 0;
+        _listIndex++; // 次の問題へ
+        _currentSec = 10; // タイマーを初期値に
+        _selectedBtn = 0; // 選ばれたボタンの情報をリセット
         countTimer();
       });
     }
   }
 
-  // ダイアログを表示
+  // ポップアップ表示の関数
   dynamic answerDialog() {
+    // showDialogで作ったものの結果を返したいので、変数に入れている
     var rtn = showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -194,7 +204,7 @@ class _QuizListPageState extends State<QuizListPage> {
         ],
       ),
     );
-    return rtn;
+    return rtn; // 結果をお返し
   }
 
   @override
@@ -202,8 +212,8 @@ class _QuizListPageState extends State<QuizListPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('出題'),
-        automaticallyImplyLeading: false, // 上部バーの戻る「＜」矢印をなくす
+        title: Text('問題'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -222,13 +232,16 @@ class _QuizListPageState extends State<QuizListPage> {
               ),
             ),
             SizedBox(height: 20),
+            // ボタンを4つ生成
             for (int i = 1; i <= 4; i++) ...{
               ElevatedButton(
                 onPressed: () async {
                   if (_selectedBtn != 0) {
-                    // 既にボタンが押されていたら、answerSelect関数を実行
+                    // 既にボタンが押されていたら
                     answerSelect();
                   }
+                  // ボタンが投下されたら、選ばれたボタンを_selectedBtnに投入
+                  // answerSelect(); タイマーをつける場合消し、countTimer関数の中へ移動
                   _selectedBtn = i;
                 },
                 child: Text(quizlist[_listIndex]['answer$i']),
@@ -239,13 +252,13 @@ class _QuizListPageState extends State<QuizListPage> {
                 ),
               ),
               SizedBox(height: 20),
-            },
+            }, // for終了
             Container(
               width: 50,
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.pink, // 背景色
+                color: Colors.pink,
               ),
               child: Center(
                 child: Text(
@@ -256,7 +269,7 @@ class _QuizListPageState extends State<QuizListPage> {
                   ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -264,6 +277,7 @@ class _QuizListPageState extends State<QuizListPage> {
   }
 }
 
+// ResultPage
 class ResultPage extends StatefulWidget {
   ResultPage(this._quizlistCnt, this._correctCnt);
   int _quizlistCnt;
@@ -274,12 +288,10 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
-  // 結果により画像を切り替える関数
+  // 結果画像表示用関数
   Widget resultImage() {
-    // 画像のパスを入れる変数
     var imagePath;
 
-    // 全問正解の時のみ、画像を切り替える処理
     if (widget._correctCnt == widget._quizlistCnt) {
       imagePath = "images/yeah.png";
     } else {
@@ -287,9 +299,9 @@ class _ResultPageState extends State<ResultPage> {
     }
 
     return Image.asset(
-      imagePath, // 設定された画像のパス
-      width: 300, // 幅300px
-      height: 300, // 高さ300px
+      imagePath,
+      width: 300,
+      height: 300,
     );
   }
 
@@ -299,7 +311,7 @@ class _ResultPageState extends State<ResultPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('結果発表'),
-        automaticallyImplyLeading: false, // 上部バーの戻る「＜」矢印をなくす
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -312,7 +324,7 @@ class _ResultPageState extends State<ResultPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(8.0),
               child: resultImage(),
             ),
             ElevatedButton(
