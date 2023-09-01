@@ -58,6 +58,7 @@
 ```dart
 
 class ResultPage extends StatefulWidget {
+  // const ResultPage({super.key}); を消す
   // ★③ ResultPageで、総問題数と正解数を受け取る  
   ResultPage(this._quizlistCnt, this._correctCnt);
   // ★④ ResultPageで、総問題数と正解数を使えるようにする 
