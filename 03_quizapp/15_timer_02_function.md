@@ -104,6 +104,5 @@ class _QuizListPageState extends State<QuizListPage> {
       },
     );
   }
-}
 
 ```
