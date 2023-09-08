@@ -50,6 +50,7 @@ for (int i = 1; i <= 4; i++) ...{
         answerSelect();
       }
       _selectedBtn = i;
+      // answerSelect();を削除
     },
     child: Text(quizlist[_listIndex]['answer$i']),
     style: ElevatedButton.styleFrom(
