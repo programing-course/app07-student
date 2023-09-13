@@ -51,7 +51,7 @@
 
 ```
 
-**quizlist.dart _QuizListPageState**
+**main.dart _QuizListPageState**
 
 ```dart
 
@@ -67,7 +67,7 @@
 
 ```
 
-**quizlist.dart _QuizListPageState body**
+**main.dart _QuizListPageState body**
 
 ```dart
 
@@ -97,7 +97,7 @@
 
 ```
 
-**quizlist.dart _QuizListPageState answerSelect()関数**
+**main.dart _QuizListPageState answerSelect()関数**
 
 ```dart
 
@@ -124,7 +124,7 @@
 
 ```
 
-**quizlist.dart _QuizListPageState timeOver()関数**
+**main.dart _QuizListPageState timeOver()関数**
 
 ```dart
 
@@ -148,7 +148,7 @@
 
 #### **【ソースコード】 ②現在までの正解数を表示させる**
 
-**quizlist.dart _QuizListPageState body**
+**main.dart _QuizListPageState body**
 
 ```dart
 
@@ -197,7 +197,7 @@
 
 #### **【ソースコード】 ③正解や結果が最後にまとめて表示されるようにする**
 
-**quizlist.dart _ResultPageState body**
+**main.dart _ResultPageState body**
 
 ```dart
 
