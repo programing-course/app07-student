@@ -2,7 +2,7 @@
 
 ## **widgetを追加してみよう**
 
-FlutterのUIを構築しているパーツのことをWidget（ウェジット）と呼びます。  
+Widget（ウェジット）はFlutterのUIを構築しているパーツです。   
 様々なWidgetを組み合わせることで複雑なUIを構築します。
 
 <br>
