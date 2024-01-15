@@ -18,12 +18,13 @@
 
 ## **演習** 
 
-①ChildにColumnを入れる  
+①CenterにChild:Columnを入れる  
 ②ColumuにContainerを３つ入れる  
 
 <br>
 
 ```dart
+body: Center(
   child: Column(
     children: [
       //グループ１
@@ -34,7 +35,7 @@
       Container(),
     ],
   ),
-
+),
 ```
 ### **【ソースコード】**
 
