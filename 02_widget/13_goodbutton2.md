@@ -1,52 +1,78 @@
-# **11_テキストの装飾**
+# **13_ボタンを押した時の処理**
 
-![image](img/11_textproperty1-1.png) 
+## **いいねボタンの処理**
+
+<br>
+
+![button](img/13_goodbutton2_1-1.png)  
 
 <br><br>
-
 ## **実行結果**
 
-![image](img/11_textproperty1-2.png) 
+![button](img/13_goodbutton2_1-2.png)  
 
 <br><br>
-
 
 ## **演習**
 
-①Textにstyle: TextStyleを追加
+<br>
+
+①変数goodを作り、初期値の0を入れる  
 
 ```dart
-  Text(
-    "トライさん",
-    style: TextStyle(
-      fontSize: 20,
-      color: Colors.cyan[300],
-      fontWeight: FontWeight.bold,
-    ),
+// MyHomePage の中身を入れるclass
+class _MyHomePageState extends State<MyHomePage> {
+  //①変数good追加
+  var good = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        <省略>
+      ),
+    );
+  }
+}
+```
+
+②onPressedの中に「いいね！」が押されたら1追加する処理を追加  
+③いいねの数を表示
+
+```dart
+  child: Row(
+    children: [
+      ElevatedButton(
+        onPressed: () {
+          //②setStateの中でgoodに１を足す
+          setState(() {
+            good++;
+          });
+        },
+        child: Text('いいね！'),
+      ),
+      SizedBox(width: 20),
+      Text(
+        //③good変数の値を表示
+        "$good",
+        style: TextStyle(color: Colors.red[400]),
+      ),
+      SizedBox(width: 50),
+      ElevatedButton(
+        onPressed: () {
+          
+        },
+        child: Text('もっと見る'),
+      ),
+    ],
   ),
-```
+```  
 
-<br><br>
+<br>
 
-②自由にText部分を装飾しよう  
-
-下のコード参考に追加してみよう！  
-
-```dart
-    //文字の大きさ
-    fontSize: 20,
-    //文字の色
-    color: Colors.cyan[300],
-    color: Colors.green,
-    //文字の太さ
-    fontWeight: FontWeight.bold,
-    //文字をイタリック
-    fontStyle: FontStyle.italic,
-    //アンダーラインを引く
-    decoration: TextDecoration.underline,
-```
-
-<br><br>
 
 ### **【ソースコード】**
 
@@ -80,6 +106,9 @@ class MyHomePage extends StatefulWidget {
 
 // MyHomePage の中身を入れるclass
 class _MyHomePageState extends State<MyHomePage> {
+  //①変数good追加
+  var good = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,15 +121,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             //グループ１
             Container(
-              width: 400,
-              height: 350,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 229, 229),
-                border: Border.all(color: Colors.brown, width: 2),
-              ),
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: [
+                width: 400,
+                height: 350,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 255, 229, 229),
+                  border: Border.all(color: Colors.brown, width: 2),
+                ),
+                padding: EdgeInsets.all(20),
+                child: ListView(children: [
                   Image.asset(
                     "images/cat001.jpg",
                     width: 100,
@@ -109,8 +137,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(children: [
                     Text("名前"),
                     SizedBox(width: 20),
-                    //①カンマをつけて「style」を追加
-                    Text("トライさん",
+                    Text(
+                      "トライさん",
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.cyan[300],
@@ -139,19 +167,40 @@ class _MyHomePageState extends State<MyHomePage> {
                           "初めまして\nよろしくお願いします\nプログラミングの楽しいところは自分がイメージしたものを形にすることができる!思い通りに動いた時の達成感を感じでほしいです。"),
                     ),
                   ]),
-                ]
-              )
-            ),
+                ])),
             SizedBox(height: 10),
             //グループ２
             Container(
-              width: 400,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 238, 255, 229),
-                border: Border.all(color: Colors.brown, width: 2),
-              ),
-            ),
+                width: 400,
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 238, 255, 229),
+                  border: Border.all(color: Colors.brown, width: 2),
+                ),
+                child: Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        //②setStateの中でgoodに１を足す
+                        setState(() {
+                          good++;
+                        });
+                      },
+                      child: Text('いいね！'),
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      //③good変数の値を表示
+                      "${good}",
+                      style: TextStyle(color: Colors.red[400]),
+                    ),
+                    SizedBox(width: 50),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('もっと見る'),
+                    ),
+                  ],
+                )),
             SizedBox(height: 10),
             //グループ３
             Container(
@@ -168,8 +217,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
 
 
 ```

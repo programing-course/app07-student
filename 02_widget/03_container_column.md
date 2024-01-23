@@ -18,8 +18,8 @@
 
 ## **演習** 
 
-①CenterにChild:Columnを入れる  
-②ColumuにContainerを３つ入れる  
+①Centerにchild:Columnを入れる  
+②childrenにContainerを３つ入れる  
 
 <br>
 
@@ -36,6 +36,7 @@ body: Center(
     ],
   ),
 ),
+
 ```
 ### **【ソースコード】**
 

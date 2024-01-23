@@ -2,7 +2,7 @@
 
 ## **widgetを追加してみよう**
 
-Widget（ウェジット）はFlutterのUIを構築しているパーツです。   
+Widget（ウェジット）はFlutterのUIを構築しているパーツです。  
 様々なWidgetを組み合わせることで複雑なUIを構築します。
 
 <br>
