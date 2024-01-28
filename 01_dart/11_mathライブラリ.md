@@ -78,7 +78,7 @@ void main() {
 
 ```
 
-少数の乱数やbool型の乱数も試してみよう
+小数の乱数やbool型の乱数も試してみよう
 
 ```dart
 import 'dart:math';
