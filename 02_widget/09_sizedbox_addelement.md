@@ -30,11 +30,11 @@
 ```
 
 Rowの中でも使える  
-今回のアプリでは追加してなくてよいです  
+今回のアプリでは追加しない  
 参考
 
 ```dart
-  child: Row(
+  Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
     ],
@@ -71,21 +71,47 @@ Rowの中でも使える
     ]
   )  
 ```
+<br>
+
+③見出しと内容の間に余白をつける
+
+<br>
 
 ```dart
 
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.start,
+  Row(
     children: [
       Text("名前"),
       //余白
       SizedBox(width: 20),
       Text("トライさん"),
     ]
-  )  
+  ),
+  Row(children: [
+      Text("住み"),
+      //余白
+      SizedBox(width: 20),
+      Text("東京都"),
+    ]
+  ),
+  Row(children: [
+      Text("趣味"),
+      //余白
+      SizedBox(width: 20),
+      Text("ゲーム\n散歩"),
+    ]
+  ),
+  Row(children: [
+      Text("一言"),
+      //余白
+      SizedBox(width: 20),
+      Text("初めまして\nよろしくお願いします"),
+    ]
+  ),
 ```
+<br>
 
-③下の結果となるように余白を追加しよう  
+④下の結果となるように余白を追加しよう  
 
 「名前」と「住み」の間に余白（サイズ20）  
 「住み」と「趣味」の間に余白（サイズ20）  
