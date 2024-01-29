@@ -67,9 +67,9 @@ void main() {
 
   if (num == 0) {
     print("星５キャラゲット！");
-  } else if (num >= 1 && num <= 3) {
+  } else if (1 <= num && num <= 3) {
     print("星４キャラゲット！");
-  } else if (num >= 4 && num <= 33) {
+  } else if (4 <= num && num <= 33) {
     print("星３キャラゲット！");
   } else {
     print("星２キャラゲット！");
