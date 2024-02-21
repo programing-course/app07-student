@@ -20,10 +20,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 ```dart
 
-dev_dependencies:
-  flutter_test:
+dependencies:
+  flutter:
     sdk: flutter
-  flutter_animate:　←ここ追加
+  flutter_animate:←ここ追加
 
 ```
 
