@@ -123,10 +123,10 @@ Rowの中でも使える
 
 ### **mainAxisAlignment**
 
-|  種別  |  内容 |  内容  |
+|  種別  |  内容 |
 | :----: | :----: |
 |  center  |  中央寄せ  |
-|  start  | Column:上寄せ  Row:左寄せ  |
+|  start  | Column:上寄せ Row:左寄せ  |
 |  end  |  Column:下寄せ Row:右寄せ  |
 |  spaceAround  |  先頭の子要素の前、末尾の子要素の後にスペースを空ける  |
 |  spaceBetween  |  子要素の間に均等なスペースを空ける  |
