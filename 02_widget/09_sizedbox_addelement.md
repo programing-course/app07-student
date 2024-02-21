@@ -120,6 +120,21 @@ Rowの中でも使える
 
 ![sizedbox](img/09_sizedbox1-4.png) 
 
+
+### **mainAxisAlignment**
+
+|  種別  |  内容（Column）  |  内容（Row）  |
+| :----: | :----: | :----: |
+|  center  |  中央寄せ  |  中央寄せ  |
+|  start  | 上寄せ   |  左寄せ  |
+|  end  |  下寄せ  |  右寄せ  |
+|  spaceAround  |  先頭の子要素の前、末尾の子要素の後にスペースを空ける  |
+|  spaceBetween  |  子要素の間に均等なスペースを空ける  |
+|  spaceEvenly  |  先頭の子要素の前、末尾の子要素の後、または子要素の間に均等なスペース空ける  |
+
+
+<br><br>
+
 ### **【ソースコード】**
 
 
