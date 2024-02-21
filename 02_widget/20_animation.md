@@ -10,21 +10,21 @@
 
 ### **ライブラリの準備**
 
-①「flutter_animate」をインポート
+①pubspec.yamlにライブラリ追加
+
+```dart
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_animate:　←ここ追加
+
+```
+
+②「flutter_animate」をインポート
 
 ```dart
 import 'package:flutter_animate/flutter_animate.dart';
-```
-
-②pubspec.yamlにライブラリ追加
-
-```dart
-
-dependencies:
-  flutter:
-    sdk: flutter
-  flutter_animate:←ここ追加
-
 ```
 
 ③アニメーションしたいwidgetの後ろにアニメーションプロパティ追加
@@ -51,16 +51,45 @@ child: ListView(
 
 ```
 
-### **fadeIn　　fadeOut**
+### **fadeIn**
 
 ```
+
+//アニメーション時間　ms(ミリ秒) s(秒)　2000ms:2秒
 .animate().fadeIn(duration: 2000.ms),
+
+//遅らせてアニメーション
+.animate().fadeIn(
+  duration: 2000.ms,
+  delay: 2000.ms //アニメーションが動き出すまでの待ち時間
+),
+
 ```
 
+### **fadeOut**
 ```
 .animate().fadeOut(duration: 2000.ms),
 ```
 
+### **move**
+
+```
+.animate().move(
+      duration: 2000.ms,
+      delay: 2000.ms,
+      begin: Offset(0, 100) //X座標：０、Y座標：100の位置から動き出す→下から上に動く
+  ),
+```
+
+### **move + fadeIn**
+
+```
+.animate().move(
+    duration: 2000.ms,
+    delay: 2000.ms,
+    begin: Offset(0, 100)
+  ).fadeIn(),
+```
 
 ### **【ソースコード】**
 ```dart
