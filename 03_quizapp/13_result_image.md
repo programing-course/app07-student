@@ -61,7 +61,19 @@ class _ResultPageState extends State<ResultPage> {
 ```
 
 
-③ resultImage関数を設定
+③ appBerの戻るボタンを削除
+
+```dart
+
+appBar: AppBar(
+  centerTitle: true,
+  backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+  title: Text("結果発表"),
+  automaticallyImplyLeading: false,//ここ追加
+),
+
+```
+![question](img/13_question1-2.png)
 
 <br>
 
