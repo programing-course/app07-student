@@ -119,6 +119,7 @@ class _ResultPageState extends State<ResultPage> {
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surfaceTint,
         title: Text("結果発表"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
