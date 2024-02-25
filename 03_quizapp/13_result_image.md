@@ -60,6 +60,22 @@ class _ResultPageState extends State<ResultPage> {
 
 ```
 
+三項演算子でWidgetを切り替える場合  
+`resultImage(),`の部分を置き換える
+
+```dart
+
+Image.asset(
+  (widget._correctCnt == widget._quizlistCnt)
+      ? "images/yeah.png"
+      : "images/yeah2.png",
+  width: 300,
+  height: 300,
+),
+
+```
+
+<br>
 
 ③ appBerの戻るボタンを削除
 
@@ -84,10 +100,7 @@ appBar: AppBar(
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatefulWidget {
-  //①コメントアウト const ResultPage({super.key});
-  //①総問題数と正解数を受け取る
   ResultPage(this._quizlistCnt, this._correctCnt);
-  //②型を宣言し、総問題数と正解数を使えるようにする
   int _quizlistCnt;
   int _correctCnt;
 
@@ -132,14 +145,15 @@ class _ResultPageState extends State<ResultPage> {
               ),
             ),
             SizedBox(height: 20),
-            Image.asset(
-              (widget._correctCnt == widget._quizlistCnt)
-                  ? "images/yeah.png"
-                  : "images/yeah2.png",
-              width: 300,
-              height: 300,
-            ),
-            // resultImage(),
+            //三項演算子の場合
+            // Image.asset(
+            //   (widget._correctCnt == widget._quizlistCnt)
+            //       ? "images/yeah.png"
+            //       : "images/yeah2.png",
+            //   width: 300,
+            //   height: 300,
+            // ),
+            resultImage(),
             SizedBox(height: 20),
             ElevatedButton(
               // ボタン
