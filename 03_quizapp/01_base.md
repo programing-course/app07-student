@@ -26,15 +26,20 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: "クイズアプリ",
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
       home: ▪️▪️▪️(),
     );
   }
 }
-
 
 ```
 
@@ -57,8 +62,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      title: "クイズアプリ",
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
       //③StartPageを追加
-      home: StartPage(),
+      home: const StartPage(),
     );
   }
 }
@@ -91,7 +101,8 @@ class _▪️▪️▪️State extends State<▪️▪️▪️> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('クイズアプリ'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("クイズアプリ"),
       ),
       body: Center(),
     );
@@ -151,7 +162,8 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('クイズアプリ'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("クイズアプリ"),
       ),
       body: Center(),
     );
@@ -187,7 +199,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(),
     );
@@ -223,7 +236,8 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('結果発表'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("結果発表"),
       ),
       body: Center(),
     );

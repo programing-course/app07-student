@@ -33,7 +33,7 @@
     child: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/quiz.png'),
+          image: AssetImage("images/quiz.png"),
           fit: BoxFit.cover,
         )
       ),
@@ -53,7 +53,7 @@
     child: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/quiz.png'),
+          image: AssetImage("images/quiz.png"),
           fit: BoxFit.cover,
         )
       ),
@@ -63,7 +63,7 @@
         child: ElevatedButton(
         onPressed: () {
         },
-        child: const Text('START'),
+        child: const Text("START"),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.pink,
           foregroundColor: Colors.white,
@@ -96,7 +96,7 @@ child: Center(
       ),
     );
   },
-  child: const Text('START'),
+  child: const Text("START"),
   style: ElevatedButton.styleFrom(
     backgroundColor: Colors.pink,
     foregroundColor: Colors.white,
@@ -128,13 +128,14 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('クイズアプリ'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("クイズアプリ"),
       ),
       body: Center(
         child: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('images/quizz.png'),
+            image: AssetImage("images/quiz.png"),
             fit: BoxFit.cover,
           )),
           child: Center(
@@ -148,7 +149,7 @@ class _StartPageState extends State<StartPage> {
                 ),
               );
             },
-            child: const Text('START'),
+            child: const Text("START"),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.pink,
               foregroundColor: Colors.white,

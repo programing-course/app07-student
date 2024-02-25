@@ -16,19 +16,22 @@
 ![question](img/05_question1-2.png)
 
 ①変数「_listIndex」を作成、初期値に０を代入  
+②変数「_listIndex」を作成、初期値に０を代入
 
 ```dart
 
 class _QuestionPageState extends State<QuestionPage> {
   //① インデックス番号用の変数
   int _listIndex = 0;
+  //② 全問題数用の変数
+  int _quizlistCnt = quizlist.length;
 
 @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        title: Text("問題"),
       ),
       body: Center(
         <省略>
@@ -39,7 +42,8 @@ class _QuestionPageState extends State<QuestionPage> {
 
 ```
 
-②quizlistのインデックス番号を「_listIndex」に置き換える
+③quizlistのインデックス番号を「_listIndex」に置き換える
+④全問題数を「_quizlistCnt」に置き換える
 
 ```dart
 
@@ -53,10 +57,11 @@ body: Center(
         color: Colors.yellow,
         child: Column(
           children: [
-            //② 1→${_listIndex + 1}して表示用にする
-            Text('第${_listIndex + 1}問 / □問中'),
+            //③ 1→${_listIndex + 1}して表示用にする
+            //④${_quizlistCnt}
+            Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
             SizedBox(height: 10),
-            //② 0→_listIndex
+            //③ 0→_listIndex
             Text(quizlist[_listIndex]["question"]),
           ],
         ),
@@ -64,7 +69,7 @@ body: Center(
       SizedBox(height: 20),
       ElevatedButton(
         onPressed: () {},
-        //② 0→_listIndex
+        //③ 0→_listIndex
         child: Text(quizlist[_listIndex]["answer1"]),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.orange,
@@ -106,7 +111,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(
         child: Column(
@@ -119,7 +125,7 @@ class _QuestionPageState extends State<QuestionPage> {
               child: Column(
                 children: [
                   //② 1→${_listIndex + 1}して表示用にする
-                  Text('第${_listIndex + 1}問 / □問中'),
+                  Text("第${_listIndex + 1}問 / □問中"),
                   SizedBox(height: 10),
                   //② 0→_listIndex
                   Text(quizlist[_listIndex]["question"]),

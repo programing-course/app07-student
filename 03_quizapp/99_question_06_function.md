@@ -8,8 +8,7 @@
 
 <br>
 
-<!-- ![question](img/08_question1-1.png) -->
-画面に変化なし
+![question](img/08_question1-1.png)
 
 ## **演習**
 
@@ -56,7 +55,13 @@ class _QuestionPageState extends State<QuestionPage> {
 
 ```
 
-②正解 / 不正解の判定を行う
+②正解 / 不正解のチェック関数を作る
+
+- 「now」・・・現在の問題
+- 「selected」・・・選んだ答え
+- 戻り値　正解＝true 不正解＝false
+
+③正解 / 不正解のチェック関数を呼び出す
 
 
 ```dart
@@ -66,17 +71,22 @@ class _QuestionPageState extends State<QuestionPage> {
   int _quizlistCnt = quizlist.length;
   int _selectedBtn = 0;
 
+  // ②正解 / 不正解のチェック
+  bool correctCheck(now, selected) {
+    if (quizlist[now]["correct"] == selected) {
+      return true;
+    }
+    return false;
+  }
+
   // 答えが選択された時の処理
   void answerSelect() async {
-
-    // ②正解 / 不正解のチェック
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      //正解
-    }else{
-      //不正解
+    //③if文の中で関数呼び出し、戻り値で判定
+    if (correctCheck(_listIndex, _selectedBtn) == true) { 
+      // 正解
+    } else { 
+      // 不正解
     }
-
-    
   }
 
   @override
@@ -85,8 +95,8 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 }
 ```
-③正解の場合「正解」不正解の場合「ざんねん・・・」  
-④正解数をカウントする  
+④正解の場合「正解」不正解の場合「ざんねん・・・」  
+⑤正解数をカウントする  
 
 ```dart
 
@@ -94,20 +104,27 @@ class _QuestionPageState extends State<QuestionPage> {
   int _listIndex = 0;
   int _quizlistCnt = quizlist.length;
   int _selectedBtn = 0;
-  //③ 正解 or 不正解
+  //④ 正解 or 不正解
   String _resultText = "";
-  //④ 正解数
+  //⑤ 正解数
   int _correctCnt = 0;
+
+  bool correctCheck(now, selected) {
+    if (quizlist[now]["correct"] == selected) {
+      return true;
+    }
+    return false;
+  }
 
   // 答えが選択された時の処理
   void answerSelect() async {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      //③
-      _resultText = "正解！";
+    if (correctCheck(_listIndex, _selectedBtn) == true) { 
       //④
+      _resultText = "正解！";
+      //⑤
       _correctCnt++;
-    }else{
-      //③
+    } else { 
+      //④
       _resultText = "ざんねん・・・";
     }
   }
@@ -119,37 +136,20 @@ class _QuestionPageState extends State<QuestionPage> {
 }
 ```
 
-<br>
+① 変数を3つ作成  
+- _quizlistCnt：全クイズの数
+- _correctCnt：正解数
+- _resultText：正解or不正解の文字用
+  
+② 関数を3つ作成  
+- correctCheck：正解 / 不正解のチェック
+- lastCheck：今が最終問題かのチェック
+- answerSelect：答えが選択された時の処理
 
-アプリが正しく動いているか確認してみよう  
-今の状態で第１問目の答えをクリックしても、結果の画面がまだできていないので正しく動いているか確認ができません  
-デバッグ機能を使ってみよう  
-デバッグとは・・・プログラムのバグ（不具合・エラー）を見つけて修正すること  
-正しく動いているか確認しながらアプリ開発を進めます  
-最後までバグを残したまま進んでしまうと直すのが大変・・・  
+③ 変数と関数を設定
+- _quizlistCntをテキスト内に
+- answerSelectをonPressed内に
 
-### **デバッグの使い方**
-
-![question](img/08_question1-3.png)
-
-<br>
-
-![question](img/08_question1-4.png)
-
-<br>
-
-trueの処理が実行されていることがわかります
-![question](img/08_question1-5.png)
-
-<br>
-
-もう一度  
-![question](img/08_question1-6.png)
-
-<br>
-
-今度は不正解のボタンをクリックして確認します
-![question](img/08_question1-7.png)
 
 <br>
 
@@ -169,23 +169,26 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
   int _selectedBtn = 0;
-  //③ 正解 or 不正解
-  String _resultText = "";
-  //④ 正解数
-  int _correctCnt = 0;
+  String _resultText = "";  //④ 正解 or 不正解
+  int _correctCnt = 0;　//⑤ 正解数
 
-  // 答えが選択された時の処理
+  // ②正解 / 不正解のチェック
+  bool correctCheck(now, selected) {
+    if (quizlist[now]["correct"] == selected) {
+      return true;
+    }
+    return false;
+  }
+
+  //① 答えが選択された時の処理
   void answerSelect() async {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      //③
-      _resultText = "正解！";
-      //④
-      _correctCnt++;
-    }else{
-      //③
-      _resultText = "ざんねん・・・";
+    //③if文の中で関数呼び出し、戻り値で判定
+    if (correctCheck(_listIndex, _selectedBtn) == true) {
+      _resultText = "正解！";//④
+      _correctCnt++;//⑤
+    } else {
+      _resultText = "ざんねん・・・";//④
     }
   }
 
@@ -194,8 +197,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
-        title: Text("問題"),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('問題'),
       ),
       body: Center(
         child: Column(
@@ -207,7 +210,7 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+                  Text('第${_listIndex + 1}問 / □問中'),
                   SizedBox(height: 10),
                   Text(quizlist[_listIndex]["question"]),
                 ],

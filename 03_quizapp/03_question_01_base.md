@@ -12,7 +12,8 @@
 
 ## **演習**
 
-①quizlist.dartを作成。問題情報を記載  
+①quizlist.dartを作成。  
+問題情報を記載  
 出題データは問題・解答選択肢・正解番号がセット  
 Map型Listで作成   
 
@@ -86,7 +87,6 @@ import 'quizlist.dart'; // これを追加
 #### **question.dart QuestionPage**
 
 ```dart
-// ③問題文を表示する枠を作成
 
 class _QuestionPageState extends State<QuestionPage> {
   @override
@@ -94,32 +94,70 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(20),
-              width: double.infinity,
-              height: 150,
-              color: Colors.yellow,
               child: Column(
                 children: [
-                  Text('第○問 / □問中'),
-                  SizedBox(height: 10),
-                  Text('問題文'),
+                  Text("第○問 / □問中"),
+                  Text("問題文"),
                 ],
               ),
             ),
-            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {},
-              child: Text('選択肢1'),
+              child: Text("選択肢1"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+④widgetの装飾
+
+```dart
+
+
+class _QuestionPageState extends State<QuestionPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),//④内側の余白
+              width: double.infinity,           //④幅いっぱいに
+              height: 150,                      //④高さ
+              color: Colors.yellow,             //④背景色
+              child: Column(
+                children: [
+                  Text("第○問 / □問中"),
+                  SizedBox(height: 10),         //④外側の余白
+                  Text("問題文"),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),               //④外側の余白
+            ElevatedButton(
+              onPressed: () async {},
+              child: Text("選択肢1"),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.white,
-                fixedSize: Size(200, 50),
+                backgroundColor: Colors.orange, //④ボタンの背景色
+                foregroundColor: Colors.white,  //④文字の色
+                fixedSize: Size(200, 50),       //④横幅高さ
               ),
             ),
             SizedBox(height: 20),
@@ -130,3 +168,4 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 }
 ```
+

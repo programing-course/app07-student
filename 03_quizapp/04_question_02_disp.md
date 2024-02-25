@@ -23,7 +23,7 @@ Container(
   color: Colors.yellow,
   child: Column(
     children: [
-      Text('第○問 / □問中'),
+      Text("第○問 / □問中"),
       SizedBox(height: 10),
       //① 問題文表示 Text()内を変更
       Text(quizlist[0]["question"]),
@@ -71,7 +71,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(
         child: Column(
@@ -83,7 +84,7 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text('第○問 / □問中'),
+                  Text("第○問 / □問中"),
                   SizedBox(height: 10),
                   //① 問題文表示 Text()内を変更
                   Text(quizlist[0]["question"]),

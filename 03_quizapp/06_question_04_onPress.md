@@ -7,8 +7,9 @@
 ## **実行結果**
 
 <br>
-
-![question](img/06_question1-1.png)
+画面変化なし
+<!-- 
+![question](img/06_question1-1.png) -->
 
 ## **演習**
 
@@ -28,7 +29,7 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        title: Text("問題"),
       ),
       body: Center(
         <省略>
@@ -78,6 +79,7 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   int _listIndex = 0;
+  int _quizlistCnt = quizlist.length;
   //①　選択肢ボタンの番号
   int _selectedBtn = 0;
 
@@ -86,7 +88,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(
         child: Column(
@@ -98,7 +101,7 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text('第${_listIndex + 1}問 / □問中'),
+                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
                   SizedBox(height: 10),
                   Text(quizlist[_listIndex]["question"]),
                 ],

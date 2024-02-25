@@ -63,6 +63,7 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   int _listIndex = 0;
+  int _quizlistCnt = quizlist.length;
   int _selectedBtn = 0;
 
   @override
@@ -70,7 +71,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('問題'),
+        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        title: Text("問題"),
       ),
       body: Center(
         child: Column(
@@ -82,7 +84,7 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text('第${_listIndex + 1}問 / □問中'),
+                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
                   SizedBox(height: 10),
                   Text(quizlist[_listIndex]["question"]),
                 ],
