@@ -25,6 +25,10 @@ dependencies:
 
 ```
 
+```dart
+  flutter pub get
+```
+
 ②「carousel_slider」をインポート
 
 ```dart
