@@ -25,6 +25,7 @@ dependencies:
 
 ```
 
+VSCode ターミナルに下記を打ってエンター
 ```dart
   flutter pub get
 ```
