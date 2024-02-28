@@ -60,6 +60,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 使用例  
 
+スライドが１つの画像  
 ![return](img/21_slider1-1.png)
 
 ```dart
@@ -100,7 +101,7 @@ Container(
 
 ```
 
-左右の画像が見えるバージョン
+左右の画像が見えるバージョン  
 ![return](img/21_slider1-2.png)
 
 ```dart
