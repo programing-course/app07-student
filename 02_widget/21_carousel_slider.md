@@ -88,13 +88,13 @@ Container(
     ],
     options: CarouselOptions(
       height: 150, //高さ（画像に合わせる）
-      initialPage: 0, //最初に表示されるページ
-      autoPlay: true, //自動でスライドしてくれるか
+      initialPage: 0,
+      autoPlay: true,
       viewportFraction: 1, //各カードの表示される範囲の割合（画像１つでスライド）
-      enableInfiniteScroll: true, //最後のカードから最初のカードへの遷移
-      autoPlayInterval: Duration(seconds: 1), //カードのインターバル
+      enableInfiniteScroll: true,
+      autoPlayInterval: Duration(seconds: 1),
       autoPlayAnimationDuration:
-      Duration(milliseconds: 800), //スライドが始まって終わるまでの時間
+      Duration(milliseconds: 800),
     ),
   ),
 ),
