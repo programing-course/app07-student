@@ -53,7 +53,10 @@ import 'package:carousel_slider/carousel_slider.dart';
   ),
 ```
 
-使用例
+使用例  
+
+![return](img/21_slider1-1.png)
+
 ```dart
 
 //Containerに入れて横幅指定
