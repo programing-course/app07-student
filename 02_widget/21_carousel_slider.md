@@ -66,7 +66,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 //Containerに入れて横幅指定
 Container(
-  width: 150, //横幅指定
+  width: 150, //横幅指定（画像の幅に合わせる）
   child: CarouselSlider(
     items: [
       Image.asset(
@@ -86,10 +86,10 @@ Container(
       ),
     ],
     options: CarouselOptions(
-      height: 150, //高さ
+      height: 150, //高さ（画像に合わせる）
       initialPage: 0, //最初に表示されるページ
       autoPlay: true, //自動でスライドしてくれるか
-      viewportFraction: 1, //各カードの表示される範囲の割合
+      viewportFraction: 1, //各カードの表示される範囲の割合（画像１つでスライド）
       enableInfiniteScroll: true, //最後のカードから最初のカードへの遷移
       autoPlayInterval: Duration(seconds: 1), //カードのインターバル
       autoPlayAnimationDuration:
@@ -100,4 +100,42 @@ Container(
 
 ```
 
+左右の画像が見えるバージョン
 ![return](img/21_slider1-2.png)
+
+```dart
+
+Container(
+  width: 300, //横幅指定
+  child: CarouselSlider(
+    items: [
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+    ],
+    options: CarouselOptions(
+      height: 150,
+      initialPage: 0,
+      autoPlay: true,
+      viewportFraction: ０．６, //左右の画像が表示される割合
+      enableInfiniteScroll: true,
+      autoPlayInterval: Duration(seconds: 1),
+      autoPlayAnimationDuration:
+      Duration(milliseconds: 800),
+    ),
+  ),
+),
+
+```
