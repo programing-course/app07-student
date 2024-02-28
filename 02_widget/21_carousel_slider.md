@@ -56,33 +56,38 @@ import 'package:carousel_slider/carousel_slider.dart';
 使用例
 ```dart
 
-CarouselSlider(
+//Containerに入れて横幅指定
+Container(
+  width: 150, //横幅指定
+  child: CarouselSlider(
     items: [
       Image.asset(
         "images/cat001.jpg",
-        width: 100,
-        height: 100,
+        width: 150,
+        height: 150,
       ),
       Image.asset(
-        "images/cat002.jpg",
-        width: 100,
-        height: 100,
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
       ),
       Image.asset(
-        "images/cat003.jpg",
-        width: 100,
-        height: 100,
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
       ),
     ],
     options: CarouselOptions(
-      height: 300,//高さ
-      initialPage: 0,//最初に表示されるページ
-      autoPlay: true,//自動でスライドしてくれるか
-      viewportFraction: 0.6,//各カードの表示される範囲の割合
-      enableInfiniteScroll: true,//最後のカードから最初のカードへの遷移
-      autoPlayInterval: Duration(seconds: 1),//カードのインターバル
-      autoPlayAnimationDuration: Duration(milliseconds: 800),//スライドが始まって終わるまでの時間
+      height: 150, //高さ
+      initialPage: 0, //最初に表示されるページ
+      autoPlay: true, //自動でスライドしてくれるか
+      viewportFraction: 1, //各カードの表示される範囲の割合
+      enableInfiniteScroll: true, //最後のカードから最初のカードへの遷移
+      autoPlayInterval: Duration(seconds: 1), //カードのインターバル
+      autoPlayAnimationDuration:
+      Duration(milliseconds: 800), //スライドが始まって終わるまでの時間
     ),
   ),
+),
 
 ```
