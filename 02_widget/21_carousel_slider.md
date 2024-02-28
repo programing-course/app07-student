@@ -6,7 +6,10 @@
 「carousel_slider」ライブラリを使ってみよう  
 ライブラリとは・・・よく使う機能を「部品」にして、簡単に使えるようにしたもの
 
-<br><br>
+<br>
+【公式】  
+https://qiita.com/yamaguchi_slj/items/82b5aa4d31cb89507c72
+<br>
 
 ### **ライブラリの準備**
 
