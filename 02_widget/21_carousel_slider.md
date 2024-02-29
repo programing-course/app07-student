@@ -130,7 +130,7 @@ Container(
       height: 150,
       initialPage: 0,
       autoPlay: true,
-      viewportFraction: ０．６, //左右の画像が表示される割合
+      viewportFraction: 0.6, //左右の画像が表示される割合
       enableInfiniteScroll: true,
       autoPlayInterval: Duration(seconds: 1),
       autoPlayAnimationDuration:
