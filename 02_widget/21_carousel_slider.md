@@ -64,47 +64,6 @@ importでエラーになる場合は、VSCode ターミナルに下記を打っ�
 
 使用例  
 
-スライドが１つの画像  
-![return](img/21_slider1-1.png)
-
-```dart
-
-//Containerに入れて横幅指定
-Container(
-  width: 150, //横幅指定（画像の幅に合わせる）
-  child: CarouselSlider(
-    items: [
-      Image.asset(
-        "images/cat001.jpg",
-        width: 150,
-        height: 150,
-      ),
-      Image.asset(
-        "images/cat001.jpg",
-        width: 150,
-        height: 150,
-      ),
-      Image.asset(
-        "images/cat001.jpg",
-        width: 150,
-        height: 150,
-      ),
-    ],
-    options: CarouselOptions(
-      height: 150, //高さ（画像に合わせる）
-      initialPage: 0,
-      autoPlay: true,
-      viewportFraction: 1, //真ん中の画像が横幅いっぱい（１がmax）
-      enableInfiniteScroll: true,
-      autoPlayInterval: Duration(seconds: 1),
-      autoPlayAnimationDuration:
-      Duration(milliseconds: 800),
-    ),
-  ),
-),
-
-```
-
 左右の画像が見えるバージョン  
 ![return](img/21_slider1-2.png)
 
@@ -134,7 +93,48 @@ Container(
       height: 150,
       initialPage: 0,
       autoPlay: true,
-      viewportFraction: 0.6, //真ん中の画像が横幅の6割
+      viewportFraction: 0.6, //真ん中の画像が横幅の6割（containerの横幅300*0.6=180 画像の幅が150なので180-150=30の余白が左右につく）
+      enableInfiniteScroll: true,
+      autoPlayInterval: Duration(seconds: 1),
+      autoPlayAnimationDuration:
+      Duration(milliseconds: 800),
+    ),
+  ),
+),
+
+```
+
+スライドが１つの画像  
+![return](img/21_slider1-1.png)
+
+```dart
+
+//Containerに入れて横幅指定
+Container(
+  width: 150, //横幅指定（画像の幅に合わせる）
+  child: CarouselSlider(
+    items: [
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+      Image.asset(
+        "images/cat001.jpg",
+        width: 150,
+        height: 150,
+      ),
+    ],
+    options: CarouselOptions(
+      height: 300, //高さ（画像に合わせる）
+      initialPage: 0,
+      autoPlay: true,
+      viewportFraction: 1, //真ん中の画像が横幅いっぱい（横幅150 画像の横幅150 ぴったり）
       enableInfiniteScroll: true,
       autoPlayInterval: Duration(seconds: 1),
       autoPlayAnimationDuration:
