@@ -15,8 +15,8 @@
 
 ```dart
 
-dev_dependencies:
-  flutter_test:
+dependencies:
+  flutter:
     sdk: flutter
   url_launcher: ^6.1.5　←ここ追加
 
