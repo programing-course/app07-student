@@ -1,4 +1,4 @@
-# **21_外部リンクする**
+# **22_外部リンクする**
 
 
 ## **url_launcher」ライブラリを使ってみよう！**
@@ -27,7 +27,7 @@ dev_dependencies:
 
 <br><br>
 
-②「flutter_animate」をインポート
+②「url_launcher」をインポート
 
 ```dart
 import 'package:url_launcher/url_launcher.dart';
