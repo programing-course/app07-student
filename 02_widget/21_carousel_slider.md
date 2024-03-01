@@ -94,7 +94,7 @@ Container(
       height: 150, //高さ（画像に合わせる）
       initialPage: 0,
       autoPlay: true,
-      viewportFraction: 1, //各カードの表示される範囲の割合（画像１つでスライド）
+      viewportFraction: 1, //真ん中の画像が横幅いっぱい（１がmax）
       enableInfiniteScroll: true,
       autoPlayInterval: Duration(seconds: 1),
       autoPlayAnimationDuration:
@@ -134,7 +134,7 @@ Container(
       height: 150,
       initialPage: 0,
       autoPlay: true,
-      viewportFraction: 0.6, //左右の画像が表示される割合
+      viewportFraction: 0.6, //真ん中の画像が横幅の6割
       enableInfiniteScroll: true,
       autoPlayInterval: Duration(seconds: 1),
       autoPlayAnimationDuration:
