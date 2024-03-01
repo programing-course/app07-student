@@ -131,7 +131,7 @@ Container(
       ),
     ],
     options: CarouselOptions(
-      height: 300, //高さ（画像に合わせる）
+      height: 300, //画像の高さより大きくすると上下に余白が入る
       initialPage: 0,
       autoPlay: true,
       viewportFraction: 1, //真ん中の画像が横幅いっぱい（横幅150 画像の横幅150 ぴったり）
