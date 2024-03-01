@@ -25,10 +25,8 @@ dependencies:
 
 ```
 
-VSCode ターミナルに下記を打ってエンター
-```dart
-  flutter pub get
-```
+インデントを合わせる  
+[carousel_slider: ^4.2.1]の上に他のライブラリが指定されていることもあります
 
 ②「carousel_slider」をインポート
 
@@ -36,7 +34,13 @@ VSCode ターミナルに下記を打ってエンター
 import 'package:carousel_slider/carousel_slider.dart';
 ```
 
+importでエラーになる場合は、VSCode ターミナルに下記を打ってエンター
+```dart
+  flutter pub get
+```
+
 ③スライダーを入れたい場所に設置
+（使用例のようにcontainerに入れると使いやすい！！）
 
 ```
   CarouselSlider(

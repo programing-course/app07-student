@@ -14,18 +14,27 @@
 
 ```dart
 
-dev_dependencies:
-  flutter_test:
+dependencies:
+  flutter:
     sdk: flutter
   flutter_animate:　←ここ追加
 
 ```
+
+インデントを合わせる  
+[flutter_animate:]の上に他のライブラリが指定されていることもあります
 
 ②「flutter_animate」をインポート
 
 ```dart
 import 'package:flutter_animate/flutter_animate.dart';
 ```
+
+importでエラーになる場合は、VSCode ターミナルに下記を打ってエンター
+```dart
+  flutter pub get
+```
+
 
 ③アニメーションしたいwidgetの後ろにアニメーションプロパティ追加
 
