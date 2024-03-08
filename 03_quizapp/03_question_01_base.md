@@ -109,7 +109,7 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: () async {},
+              onPressed: (){},
               child: Text("選択肢1"),
             ),
           ],
@@ -152,7 +152,7 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
             SizedBox(height: 20),               //④外側の余白
             ElevatedButton(
-              onPressed: () async {},
+              onPressed: (){},
               child: Text("選択肢1"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange, //④ボタンの背景色
