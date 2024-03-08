@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 
 ②start.dart をインポート  
 - 「START」ボタンが押されたら、start.dartのStartPage.classに飛ぶ  
+
 ③TOPページのクラス名を指定
 
 ```dart
