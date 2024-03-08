@@ -93,7 +93,7 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {},
+              onPressed: (){},
               //選択肢表示 Text()内を変更
               child: Text(quizlist[0]["answer1"]),
               style: ElevatedButton.styleFrom(
