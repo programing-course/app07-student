@@ -21,6 +21,7 @@
 
 class _QuestionPageState extends State<QuestionPage> {
   int _listIndex = 0;
+  int _quizlistCnt = quizlist.length;
   //①　選択肢ボタンの番号
   int _selectedBtn = 0;
 
