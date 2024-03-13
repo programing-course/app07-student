@@ -25,7 +25,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int _selectedBtn = 0;
 
   //①関数を作成
-  void answerSelect() async {
+  void answerSelect() {
     
   }
 
@@ -67,7 +67,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int _selectedBtn = 0;
 
   // 答えが選択された時の処理
-  void answerSelect() async {
+  void answerSelect() {
 
     // ②正解 / 不正解のチェック
     if (quizlist[_listIndex]["correct"] == _selectedBtn) {
@@ -100,7 +100,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int _correctCnt = 0;
 
   // 答えが選択された時の処理
-  void answerSelect() async {
+  void answerSelect() {
     if (quizlist[_listIndex]["correct"] == _selectedBtn) {
       //③
       _resultText = "正解！";
@@ -177,7 +177,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int _correctCnt = 0;
 
   // 答えが選択された時の処理
-  void answerSelect() async {
+  void answerSelect() {
     if (quizlist[_listIndex]["correct"] == _selectedBtn) {
       //③
       _resultText = "正解！";
