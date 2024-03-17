@@ -85,9 +85,11 @@ class _QuestionPageState extends State<QuestionPage> {
           _timeOver = true;
           answerSelect();
         } else {
-          setState(() {
-            _currentSec--;
-          });
+          if (this.mounted) {
+            setState(() {
+              _currentSec--;
+            });
+          }
         }
       } else {
         timer.cancel();
@@ -135,13 +137,15 @@ class _QuestionPageState extends State<QuestionPage> {
     );
 
     //再描画
-    setState(() {
-      _listIndex++; // 次の問題へ
-      _selectedBtn = 0; // 選ばれたボタンの情報をリセット
-      _currentSec = 10; //⑥タイマーリセット
-      _timeOver = false;//⑥ゲームオーバー判定リセット
-      countTimer(); //⑥タイマー再起動
-    });
+    if (this.mounted) {
+      setState(() {
+        _listIndex++; // 次の問題へ
+        _selectedBtn = 0; // 選ばれたボタンの情報をリセット
+        _currentSec = 10; //⑥タイマーリセット
+        _timeOver = false;//⑥ゲームオーバー判定リセット
+        countTimer(); //⑥タイマー再起動
+      });
+    }
   }
 
   @override
