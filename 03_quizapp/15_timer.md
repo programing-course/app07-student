@@ -19,7 +19,7 @@ Container(
   ),
   child: Center(
     child: Text(
-      _currentSec.toString(),
+      "",
       style: TextStyle(
         fontSize: 20,
         color: Colors.white,
