@@ -19,7 +19,7 @@ Container(
   ),
   child: Center(
     child: Text(
-      "",
+      "10",
       style: TextStyle(
         fontSize: 20,
         color: Colors.white,
