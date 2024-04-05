@@ -63,46 +63,7 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
 
 ```
 
-## **tekisprite.dart**
-
-①敵の表示
-
-```dart
-
-import 'package:flame/components.dart';
-import 'game.dart';
-
-//敵の動きを作るクラス
-//---------------------------------------------------------------
-class ItemSprite extends SpriteComponent with HasGameRef<MainGame> {
-  //移動スピード
-  var _speed = 200;
-
-  @override
-  Future<void> onLoad() async {
-    //画像取得（描画の場所とサイズ指定）
-    sprite = await Sprite.load('ika.png');
-    position = Vector2(100, 100);
-    size = Vector2(50, 50);
-    anchor = Anchor.center;
-
-    await super.onLoad();
-  }
-
-  //スプライトの更新
-  @override
-  void update(double delta) async {
-    // 縦方向のみ移動
-    position.y += _speed * delta;
-
-    super.update(delta);
-  }
-}
-
-
-```
-
-## **敵を動かす**
+## **敵を表示・動かす**
 
 **tekisprite.dart**
 
