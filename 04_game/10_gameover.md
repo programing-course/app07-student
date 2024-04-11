@@ -1,6 +1,7 @@
 # **ゲームオーバー表示**
 
-**tekisprit.dart**
+
+**tekisprite.dart**
 
 ①HPが０以下でゲームオーバー表示  
 
@@ -115,5 +116,21 @@ class Gameovershori extends TextBoxComponent
   }
 }
 
+
+```
+
+**itemsprite.dart**
+
+```dart
+
+@override
+Future<void> onRemove() async {
+  if (gameRef.HP > 0) {
+    await gameRef.ItemSpriteRemove();
+    await gameRef.TpTextRemove();
+    await gameRef.ButtonRemove();
+  }
+  super.onRemove();
+}
 
 ```
