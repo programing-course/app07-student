@@ -349,9 +349,11 @@ class ItemSprite extends SpriteComponent
 
   @override
   Future<void> onRemove() async {
-    await gameRef.ItemSpriteRemove();
-    await gameRef.TpTextRemove();
-    await gameRef.ButtonRemove();
+    if (gameRef.HP > 0) {
+      await gameRef.ItemSpriteRemove();
+      await gameRef.TpTextRemove();
+      await gameRef.ButtonRemove();
+    }
     super.onRemove();
   }
 
@@ -371,6 +373,7 @@ class ItemSprite extends SpriteComponent
     super.onCollisionStart(intersectionPoints, other);
   }
 }
+
 
 
 ```
