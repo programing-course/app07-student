@@ -21,7 +21,27 @@
 
 ```
 
+**itemsprite.dart**
+
+②HPが残っているときの判定追加
+
+```dart
+
+@override
+Future<void> onRemove() async {
+  if (gameRef.HP > 0) {
+    await gameRef.ItemSpriteRemove();
+    await gameRef.TpTextRemove();
+    await gameRef.ButtonRemove();
+  }
+  super.onRemove();
+}
+
+```
+
 **game.dart**
+
+③スプライトを消す
 
 ```dart
 
@@ -119,18 +139,17 @@ class Gameovershori extends TextBoxComponent
 
 ```
 
-**itemsprite.dart**
+**game.dart**
 
 ```dart
 
-@override
-Future<void> onRemove() async {
-  if (gameRef.HP > 0) {
-    await gameRef.ItemSpriteRemove();
-    await gameRef.TpTextRemove();
-    await gameRef.ButtonRemove();
-  }
-  super.onRemove();
+Future<void> Initialize() async {
+  HP = 100;
+  TP = 0;
+
+  children.whereType<Gameovershori>().forEach((button) {
+    button.removeFromParent();
+  });
 }
 
 ```
