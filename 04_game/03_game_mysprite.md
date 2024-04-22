@@ -204,7 +204,17 @@ class MySprite extends SpriteComponent
       late Vector2 _delta; //キーボード押した時の移動量
       double _speed = 500;
 
-    //省略
+    @override
+    Future<void> onLoad() async {
+      //画像取得（描画の場所とサイズ指定）
+      sprite = await Sprite.load('heart.png');
+      position = Vector2(gameRef.size.x * 0.5, gameRef.size.y * 0.5);
+      size = Vector2(100, 100);
+      anchor = Anchor.center;
+      _delta = Vector2.zero(); //初期化追加
+  
+      await super.onLoad();
+    }
 ```
 
 ④キーを検知して移動量追加
