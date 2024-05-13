@@ -92,8 +92,8 @@ class TekiSprite extends SpriteComponent with HasGameRef<MainGame> {
     const double Rad = pi / 180;
 
     //②開始位置
-    final pos_x = Random().nextDouble() * gameRef.size.x;
-    final pos_y = Random().nextDouble() * (gameRef.size.y - 250);
+    final pos_x = Random().nextDouble() * gameRef.size.x + 50;
+    final pos_y = Random().nextDouble() * (gameRef.size.y - 300) + 50;//下線より上、上の壁よりプレーヤーのサイズ分下
 
     //②移動量
     //45*Rad:ラジアン(角度×π/180)
@@ -426,8 +426,8 @@ import 'mysprite.dart';
     const double Rad = pi / 180;
 
     
-    final pos_x = Random().nextDouble() * gameRef.size.x;
-    final pos_y = Random().nextDouble() * (gameRef.size.y - 250);
+    final pos_x = Random().nextDouble() * gameRef.size.x + 50;
+    final pos_y = Random().nextDouble() * (gameRef.size.y - 300) + 50;
 
     //②角度をランダムに`spawnAngle`関数に変更
     final vx = TekiSpeed * cos(spawnAngle * Rad);
@@ -491,8 +491,8 @@ class TekiSprite extends SpriteComponent
     const double Rad = pi / 180;
 
     //開始位置
-    final pos_x = Random().nextDouble() * gameRef.size.x;
-    final pos_y = Random().nextDouble() * (gameRef.size.y - 250);
+    final pos_x = Random().nextDouble() * gameRef.size.x + 50;
+    final pos_y = Random().nextDouble() * (gameRef.size.y - 300) + 50;
 
     //移動量
     //45*Rad:ラジアン(角度×π/180)
