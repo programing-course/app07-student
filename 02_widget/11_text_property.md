@@ -44,6 +44,20 @@
     fontStyle: FontStyle.italic,
     //アンダーラインを引く
     decoration: TextDecoration.underline,
+    decorationColor: Colors.red, // 下線の色
+    decorationStyle: TextDecorationStyle.dashed, // 下線のスタイル
+    // 文字間のスペース
+    letterSpacing: 2.0,
+    // 単語間のスペース
+    wordSpacing: 5.0, 
+    shadows: [
+      Shadow(
+        // テキストの影
+        blurRadius: 10.0,
+        color: Colors.black45,
+        offset: Offset(5, 5),
+      ),
+    ],
 ```
 
 <br><br>
