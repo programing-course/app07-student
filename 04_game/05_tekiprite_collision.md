@@ -452,7 +452,7 @@ import 'mysprite.dart';
 
     final random = Random().nextDouble();
 
-    lerpDouble(a,b,t)　→　return a + (b - a) * t;
+    //lerpDouble(a,b,t)　→　return a + (b - a) * t;
     //45 + (135 - 45) * ランダム　 
     //lerpDoubleは、TekiMinAngleとTekiMaxAngleの2つの角度を、randomの比率で分ける角度を返す
     final spawnAngle = lerpDouble(TekiMinAngle, TekiMaxAngle, random)!;
