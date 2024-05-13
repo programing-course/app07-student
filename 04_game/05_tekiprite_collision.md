@@ -273,7 +273,9 @@ class TekiSprite extends SpriteComponent
 ![tekisprite](img/05_tekisprite1-1.png)
 
 
-⑤onCollisionStart、onCollision、onCollisionEndを追加
+⑧onCollisionStart、onCollision、onCollisionEndを追加
+
+**tekisprite.dart**
 
 ```dart
 
