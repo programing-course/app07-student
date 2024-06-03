@@ -16,7 +16,7 @@
 ![question](img/05_question1-2.png)
 
 ①変数「_listIndex」を作成、初期値に０を代入  
-②変数「_listIndex」を作成、初期値に０を代入
+②変数「_quizlistCnt」を作成、初期値に問題数を代入
 
 ```dart
 
