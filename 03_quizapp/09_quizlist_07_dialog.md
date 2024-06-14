@@ -32,6 +32,7 @@ void answerSelect() {
 
     //①showDialogを使う
     showDialog(
+      barrierDismissible: false,  //背景タップできないようにする
       context: context,
       builder: (context) => AlertDialog(
         //②結果のテキスト表示
@@ -78,6 +79,7 @@ void answerSelect() async{
 
     //⑤awaitをつける
     await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         content: Text(_resultText),
@@ -120,6 +122,7 @@ void answerSelect() async{
 
     //⑤ダイアログ表示　ボタンが押されるまで次の処理が動かないようにする
     await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         content: Text(_resultText),
