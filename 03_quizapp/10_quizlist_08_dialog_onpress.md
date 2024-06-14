@@ -54,6 +54,7 @@ class _QuestionPageState extends State<QuestionPage> {
 ```dart
 
 await showDialog(
+  barrierDismissible: false,
   context: context,
   builder: (context) => AlertDialog(
     content: Text(_resultText),
@@ -114,6 +115,7 @@ ResultPageに引数を渡す、受け取りの処理を書かないとエラー�
 ```dart
 
 await showDialog(
+  barrierDismissible: false,
   context: context,
   builder: (context) => AlertDialog(
     content: Text(_resultText),
@@ -202,6 +204,7 @@ class _QuestionPageState extends State<QuestionPage> {
     }
 
     await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         content: Text(_resultText),
