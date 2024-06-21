@@ -7,7 +7,7 @@
 
 【参考サイト】https://qiita.com/ryota47/items/0cd30257f063c06df1b8
 https://blog.flutteruniv.com/flutter-package-url_launcher/
-
+https://zenn.dev/mkkz/articles/def493eac1a5c8
 <br><br>
 
 ### **ライブラリの準備**
