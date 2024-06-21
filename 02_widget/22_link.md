@@ -6,6 +6,7 @@
 <br><br>
 
 【参考サイト】https://qiita.com/ryota47/items/0cd30257f063c06df1b8
+https://blog.flutteruniv.com/flutter-package-url_launcher/
 
 <br><br>
 
