@@ -1,6 +1,6 @@
 # **クイズアプリを作ろう 02**
 
-## **スタートページをつくろう　　start.dat>StartPage.class**
+## **スタートページをつくろう　　start.dart>StartPage.class**
 
 <br>
 
