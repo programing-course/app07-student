@@ -224,11 +224,11 @@ class MySprite extends SpriteComponent
 //キーボード操作
   @override
   bool onKeyEvent(
-    RawKeyEvent event,
+    KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
     //キーから離れたとき止まる
-    if (event is RawKeyUpEvent) {
+    if (event is KeyUpEvent) {
       _delta = Vector2.zero();
     }
     //[A]キーを押した時
