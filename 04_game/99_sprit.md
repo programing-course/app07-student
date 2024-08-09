@@ -97,6 +97,7 @@ class MySprite extends SpriteComponent
 }
 ```
 
+game.dart
 
 ```dart
 
@@ -116,4 +117,35 @@ void onPlayerReachTargetPosition(Vector2 position) {
       hasDisplayedNewSprite = true;
     }
   }
+```
+
+mysprit.dart
+```dart
+
+// プレイヤーの位置をチェックして特定のイベントを実行
+    gameRef.onPlayerReachTargetPosition(position);
+
+```
+
+newsprit.dart
+```dart
+
+import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+
+class NewSprite extends SpriteComponent {
+  NewSprite({required Vector2 position})
+      : super(
+          position: position,
+          size: Vector2.all(64.0),
+          anchor: Anchor.center,
+        );
+
+  @override
+  Future<void> onLoad() async {
+    super.onLoad();
+    sprite = await Sprite.load('heart.png'); // 新しいスプライトの画像を指定
+  }
+}
+
 ```
