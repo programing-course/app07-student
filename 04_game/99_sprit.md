@@ -97,14 +97,16 @@ class MySprite extends SpriteComponent
 }
 ```
 
+特定の位置に来たら新しいスプライトを表示する　　
 game.dart
 
+importの下に追加
 ```dart
 
 bool hasDisplayedNewSprite = false;
 
 ```
-
+MainGameのclassの中、一番下に追加  
 ```dart
 
 void onPlayerReachTargetPosition(Vector2 position) {
@@ -120,6 +122,8 @@ void onPlayerReachTargetPosition(Vector2 position) {
 ```
 
 mysprit.dart
+update関数内に追加
+
 ```dart
 
 // プレイヤーの位置をチェックして特定のイベントを実行
@@ -128,6 +132,7 @@ mysprit.dart
 ```
 
 newsprit.dart
+新しいスプライトのクラス
 ```dart
 
 import 'package:flame/components.dart';
