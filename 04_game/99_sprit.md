@@ -96,3 +96,24 @@ class MySprite extends SpriteComponent
   }
 }
 ```
+
+
+```dart
+
+bool hasDisplayedNewSprite = false;
+
+```
+
+```dart
+
+void onPlayerReachTargetPosition(Vector2 position) {
+    // (300, 300)の位置で新しいスプライトを表示
+    var targetPosition = Vector2(300, 300);
+
+    if (position.distanceTo(targetPosition) < 10 && !hasDisplayedNewSprite) {
+      // 新しいスプライトを表示
+      add(NewSprite(position: targetPosition));
+      hasDisplayedNewSprite = true;
+    }
+  }
+```
