@@ -23,27 +23,23 @@
 //省略
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  String _resultText = "";
-  int _correctCnt = 0;
 
   //①最終問題判定関数
   bool lastCheck() {
-    if (_listIndex == _quizlistCnt - 1) {
+    if (listIndex == quizlistCnt - 1) {
       return true;
     }
     return false;
   }
 
   void answerSelect() async {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     } else {
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
+
 
 //省略
 
@@ -53,28 +49,26 @@ class _QuestionPageState extends State<QuestionPage> {
 
 ```dart
 
-await showDialog(
-  barrierDismissible: false,
-  context: context,
-  builder: (context) => AlertDialog(
-    content: Text(_resultText),
-    actions: [
-      TextButton(
-        onPressed: () {
-          //②判定を追加
-          if (lastCheck()) {
-
-
-          } else {
-            Navigator.pop(context); //ダイアログを閉じる
-          }
-        },
-        //②判定を追加
-        child: Text(lastCheck() ? "結果発表" : "次の問題"),
+    await showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(resultText),
+        actions: [
+          TextButton(
+            onPressed: () {
+              //②判定を追加
+              if (lastCheck()) {
+              } else {
+                Navigator.pop(context); //ダイアログを閉じる
+              }
+            },
+            //②判定を追加
+            child: Text(lastCheck() ? "結果発表" : "次の問題"),
+          ),
+        ],
       ),
-    ],
-  ),
-);
+    );
 
 ```
 <br>
@@ -110,38 +104,38 @@ if(lastCheck()){
 
 
 ③ 最終問題だったら飛び先とボタンのテキストを変更  
-ResultPageに引数を渡す、受け取りの処理を書かないとエラーになる
+飛び先のclassがリンクされていないので、この時点ではエラーになる
 
 ```dart
 
-await showDialog(
-  barrierDismissible: false,
-  context: context,
-  builder: (context) => AlertDialog(
-    content: Text(_resultText),
-    actions: [
-      TextButton(
-        onPressed: () {
-          if (lastCheck()) {
-            //③次のページへ遷移
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  //result.dartのPesultPage.classに飛ぶ
-                  //引数に_quizlistCnt,_correctCnt
-                  return ResultPage(_quizlistCnt, _correctCnt);
-                },
-              ),
-            );
-          } else {
-            Navigator.pop(context); //ダイアログを閉じる
-          }
-        },
-        child: Text(lastCheck() ? "結果発表" : "次の問題"),
+    await showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(resultText),
+        actions: [
+          TextButton(
+            onPressed: () {
+              if (lastCheck()) {
+                //③次のページへ遷移
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      //result.dartのPesultPage.classに飛ぶ
+                      return ResultPage();
+                    },
+                  ),
+                );
+              } else {
+                Navigator.pop(context); //ダイアログを閉じる
+              }
+            },
+            //②判定を追加
+            child: Text(lastCheck() ? "結果発表" : "次の問題"),
+          ),
+        ],
       ),
-    ],
-  ),
-);
+    );
 
 ```
 
@@ -172,6 +166,12 @@ import 'package:flutter/material.dart';
 import 'quizlist.dart';
 import 'result.dart';
 
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+int selectedBtn = 0;
+String resultText = "";
+int correctCnt = 0;
+
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
 
@@ -180,34 +180,27 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  String _resultText = "";
-  int _correctCnt = 0;
 
-
-  //①最終問題判定関数
   bool lastCheck() {
-    if (_listIndex == _quizlistCnt - 1) {
+    if (listIndex == quizlistCnt - 1) {
       return true;
     }
     return false;
   }
 
   void answerSelect() async {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     } else {
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
 
     await showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(_resultText),
+        content: Text(resultText),
         actions: [
           TextButton(
             onPressed: () {
@@ -215,12 +208,13 @@ class _QuestionPageState extends State<QuestionPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return ResultPage(_quizlistCnt, _correctCnt);
+                      //result.dartのPesultPage.classに飛ぶ
+                      return ResultPage();
                     },
                   ),
                 );
               } else {
-                Navigator.pop(context); //ダイアログを閉じる
+                Navigator.pop(context);
               }
             },
             child: Text(lastCheck() ? "結果発表" : "次の問題"),
@@ -229,10 +223,9 @@ class _QuestionPageState extends State<QuestionPage> {
       ),
     );
 
-    //再描画
     setState(() {
-      _listIndex++; // 次の問題へ
-      _selectedBtn = 0; // 選ばれたボタンの情報をリセット
+      listIndex++;
+      selectedBtn = 0;
     });
   }
 
@@ -241,7 +234,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -254,9 +248,9 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
                   SizedBox(height: 10),
-                  Text(quizlist[_listIndex]["question"]),
+                  Text(quizlist[listIndex]["question"]),
                 ],
               ),
             ),
@@ -264,24 +258,26 @@ class _QuestionPageState extends State<QuestionPage> {
             for (int i = 1; i <= 4; i++) ...{
               ElevatedButton(
                 onPressed: () {
-                  _selectedBtn = i;
+                  selectedBtn = i;
                   answerSelect();
                 },
-                child: Text(quizlist[_listIndex]["answer$i"]),
+                child: Text(quizlist[listIndex]["answer$i"]),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
-                  fixedSize: Size(200, 50),
+                  fixedSize: Size(300, 50),
                 ),
               ),
               SizedBox(height: 20),
-            },
+            }, 
           ],
         ),
       ),
     );
   }
 }
+
+
 
 
 ```

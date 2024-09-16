@@ -44,7 +44,7 @@ ElevatedButton(
   style: ElevatedButton.styleFrom(
     backgroundColor: Colors.orange,
     foregroundColor: Colors.white,
-    fixedSize: Size(200, 50),
+    fixedSize: Size(300, 50),
   ),
 ),
 
@@ -71,7 +71,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -99,7 +100,7 @@ class _QuestionPageState extends State<QuestionPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 foregroundColor: Colors.white,
-                fixedSize: Size(200, 50),
+                fixedSize: Size(300, 50),
               ),
             ),
             SizedBox(height: 20),

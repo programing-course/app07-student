@@ -26,7 +26,7 @@
 
 <br><br>
 
-② 関数の作成全問正解の時のみ、画像を切り替える処理を設定
+② 関数の作成全　問正解の時のみ、画像を切り替える処理を設定
 
 ```dart
 
@@ -38,7 +38,7 @@ class _ResultPageState extends State<ResultPage> {
   Widget resultImage() {
     var imagePath;
 
-    if (widget._correctCnt == widget._quizlistCnt) {
+    if (correctCnt == quizlistCnt) {
       imagePath = "images/yeah.png";
     } else {
       imagePath = "images/yeah2.png";
@@ -66,7 +66,7 @@ class _ResultPageState extends State<ResultPage> {
 ```dart
 
 Image.asset(
-  (widget._correctCnt == widget._quizlistCnt)
+  (correctCnt == quizlistCnt)
       ? "images/yeah.png"
       : "images/yeah2.png",
   width: 300,
@@ -89,7 +89,6 @@ appBar: AppBar(
 ),
 
 ```
-![question](img/13_question1-2.png)
 
 <br>
 
@@ -98,11 +97,10 @@ appBar: AppBar(
 ```dart
 
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 class ResultPage extends StatefulWidget {
-  ResultPage(this._quizlistCnt, this._correctCnt);
-  int _quizlistCnt;
-  int _correctCnt;
+  const ResultPage({super.key});
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -112,7 +110,7 @@ class _ResultPageState extends State<ResultPage> {
   Widget resultImage() {
     var imagePath;
 
-    if (widget._correctCnt == widget._quizlistCnt) {
+    if (correctCnt == quizlistCnt) {
       imagePath = "images/yeah.png";
     } else {
       imagePath = "images/yeah2.png";
@@ -130,44 +128,40 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("結果発表"),
         automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // 中央寄せ
+          mainAxisAlignment: MainAxisAlignment.center, //⑥ 中央寄せ
           children: [
             Text(
-              "${widget._quizlistCnt}問中 ${widget._correctCnt}問正解",
+              "${quizlistCnt}問中 ${correctCnt}問正解",
               style: TextStyle(
-                fontSize: 30, // 文字の大きさを30pxに
+                fontSize: 30,
               ),
             ),
             SizedBox(height: 20),
-            //三項演算子の場合
             // Image.asset(
-            //   (widget._correctCnt == widget._quizlistCnt)
+            //   (correctCnt == quizlistCnt)
             //       ? "images/yeah.png"
             //       : "images/yeah2.png",
             //   width: 300,
             //   height: 300,
             // ),
-            resultImage(),
+
             SizedBox(height: 20),
             ElevatedButton(
-              // ボタン
               onPressed: () {
-                // ボタンを押したら
-                Navigator.of(context)
-                    .popUntil((route) => route.isFirst); // 最初のページへ
+                Navigator.of(context).popUntil((route) => route.isFirst);
               },
-              child: Text("もう一回"), // ボタンのテキスト
+              child: Text("もう一回"),
               style: ElevatedButton.styleFrom(
-                // ボタンの見た目
-                backgroundColor: Colors.orange, // 背景はオレンジ
-                foregroundColor: Colors.white, // 文字の色は白
-                fixedSize: Size(200, 50), // 幅200px 高さ50px
+                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white,
+                fixedSize: Size(200, 50),
               ),
             )
           ],
@@ -176,6 +170,7 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 }
+
 
 
 ```

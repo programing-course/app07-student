@@ -15,46 +15,42 @@
 
 ![question](img/06_question1-2.png)
 
-① 変数「_selectedBtn」を作成し、初期値に０を代入  
+① 変数「selectedBtn」を作成し、初期値に０を代入  
 
 ```dart
 
-class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  //①　選択肢ボタンの番号
-  int _selectedBtn = 0;
+import 'package:flutter/material.dart';
+import 'quizlist.dart';
 
-@override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("問題"),
-      ),
-      body: Center(
-        <省略>
-      ),
-    );
-  }
+
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+//①　選択肢ボタンの番号
+int selectedBtn = 0;
+
+class QuestionPage extends StatefulWidget {
+  const QuestionPage({super.key});
+
+  @override
+  _QuestionPageState createState() => _QuestionPageState();
 }
 
 ```
 
-② 選択肢ボタンが押されたら、ボタンの番号を_selectedBtnに代入する  
+② 選択肢ボタンが押されたら、ボタンの番号をselectedBtnに代入する  
 
 ```dart
 
 ElevatedButton(
   onPressed: () {
     //②　何番目のボタンが押されたか代入
-    _selectedBtn = 1;
+    selectedBtn = 1;
   },
-  child: Text(quizlist[_listIndex]["answer1"]),
+  child: Text(quizlist[listIndex]["answer1"]),
   style: ElevatedButton.styleFrom(
     backgroundColor: Colors.orange,
     foregroundColor: Colors.white,
-    fixedSize: Size(200, 50),
+    fixedSize: Size(300, 50),
   ),
 ),
 
@@ -71,6 +67,12 @@ ElevatedButton(
 import 'package:flutter/material.dart';
 import 'quizlist.dart';
 
+
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+//①　選択肢ボタンの番号
+int selectedBtn = 0;
+
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
 
@@ -79,17 +81,13 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  //①　選択肢ボタンの番号
-  int _selectedBtn = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -102,9 +100,9 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
                   SizedBox(height: 10),
-                  Text(quizlist[_listIndex]["question"]),
+                  Text(quizlist[listIndex]["question"]),
                 ],
               ),
             ),
@@ -112,13 +110,13 @@ class _QuestionPageState extends State<QuestionPage> {
             ElevatedButton(
               onPressed: () {
                 //②　何番目のボタンが押されたか代入
-                _selectedBtn = 1;
+                selectedBtn = 1;
               },
-              child: Text(quizlist[_listIndex]["answer1"]),
+              child: Text(quizlist[listIndex]["answer1"]),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 foregroundColor: Colors.white,
-                fixedSize: Size(200, 50),
+                fixedSize: Size(300, 50),
               ),
             ),
             SizedBox(height: 20),
@@ -129,7 +127,5 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 }
 
-
-// 省略
 
 ```

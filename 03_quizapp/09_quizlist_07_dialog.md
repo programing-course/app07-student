@@ -23,11 +23,11 @@
 
 void answerSelect() {
 
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     } else {
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
 
     //①showDialogを使う
@@ -36,7 +36,7 @@ void answerSelect() {
       context: context,
       builder: (context) => AlertDialog(
         //②結果のテキスト表示
-        content: Text(_resultText),
+        content: Text(resultText),
         actions: [
           //③テキストボタンを作る
           TextButton(
@@ -51,8 +51,8 @@ void answerSelect() {
 
     //④再描画
     setState(() {
-      _listIndex++; // 次の問題へ
-      _selectedBtn = 0; // 選ばれたボタンの情報をリセット
+      listIndex++; // 次の問題へ
+      selectedBtn = 0; // 選ばれたボタンの情報をリセット
     });
   }
 
@@ -69,12 +69,13 @@ void answerSelect() {
 ```dart
 
 //⑤ asyncをつける
-void answerSelect() async{
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+//⑤ asyncをつける
+  void answerSelect() async{
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     } else {
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
 
     //⑤awaitをつける
@@ -82,11 +83,11 @@ void answerSelect() async{
       barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(_resultText),
+        content: Text(resultText),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); //ダイアログを閉じる
+              Navigator.pop(context);
             },
             child: Text("次の問題"),
           ),
@@ -94,9 +95,10 @@ void answerSelect() async{
       ),
     );
 
+    
     setState(() {
-      _listIndex++;
-      _selectedBtn = 0;
+      listIndex++; 
+      selectedBtn = 0; 
     });
   }
 
@@ -110,26 +112,46 @@ void answerSelect() async{
 
 ```dart
 
-// 省略
+import 'package:flutter/material.dart';
+import 'quizlist.dart';
 
-  void answerSelect() async {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+int selectedBtn = 0;
+//③ 正解 or 不正解
+String resultText = "";
+//④ 正解数
+int correctCnt = 0;
+
+class QuestionPage extends StatefulWidget {
+  const QuestionPage({super.key});
+
+  @override
+  _QuestionPageState createState() => _QuestionPageState();
+}
+
+class _QuestionPageState extends State<QuestionPage> {
+
+
+  //⑤ asyncをつける
+  void answerSelect() async{
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     } else {
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
 
-    //⑤ダイアログ表示　ボタンが押されるまで次の処理が動かないようにする
+    //⑤awaitをつける
     await showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(_resultText),
+        content: Text(resultText),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); //ダイアログを閉じる
+              Navigator.pop(context);
             },
             child: Text("次の問題"),
           ),
@@ -137,13 +159,61 @@ void answerSelect() async{
       ),
     );
 
-    //再描画
+    
     setState(() {
-      _listIndex++; // 次の問題へ
-      _selectedBtn = 0; // 選ばれたボタンの情報をリセット
+      listIndex++; 
+      selectedBtn = 0; 
     });
   }
 
-// 省略
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
+        title: Text("問題"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              width: double.infinity,
+              height: 150,
+              color: Colors.yellow,
+              child: Column(
+                children: [
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
+                  SizedBox(height: 10),
+                  Text(quizlist[listIndex]["question"]),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            for (int i = 1; i <= 4; i++) ...{
+              ElevatedButton(
+                onPressed: () {
+                  selectedBtn = i;
+                  //②答えが選択された時の処理を呼び出す
+                  answerSelect();
+                },
+                child: Text(quizlist[listIndex]["answer$i"]),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  foregroundColor: Colors.white,
+                  fixedSize: Size(300, 50),
+                ),
+              ),
+              SizedBox(height: 20),
+            }, //①追加
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 ```

@@ -17,11 +17,11 @@ https://webgakushu.com/flutter/quiz_new14/
 
 **ヒント**
 - quizlist.dartに「hint」を追加
-- _hint という変数を作る
-- 問題文表示領域の高さを180にする
+- hint という変数を作る
+- 問題文表示領域の高さを200にする
 - ヒントボタンと、表示するTextウィジェット作る
-- ヒントボタンが押されたら_hint にヒントを代入
-- _hintを初期化
+- ヒントボタンが押されたらhint にヒントを代入
+- hintを初期化
 
 <br>
 
@@ -44,13 +44,28 @@ https://webgakushu.com/flutter/quiz_new14/
 
 ```dart
 
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  String _resultText = "";
-  int _correctCnt = 0;
+  int listIndex = 0;
+  int quizlistCnt = quizlist.length;
+  int selectedBtn = 0;
+  String resultText = "";
+  int correctCnt = 0;
+  String hint = ""; // ★ヒント用の変数追加
 
-  String _hint = ""; // ★ヒント用の変数追加
+  //省略
+
+  @override
+  void initState() {
+    super.initState();
+
+    listIndex = 0;
+    quizlistCnt = quizlist.length;
+    selectedBtn = 0;
+    resultText = "";
+    correctCnt = 0;
+    String hint = "";
+  }
+
+  //省略
 
 ```
 
@@ -61,25 +76,25 @@ https://webgakushu.com/flutter/quiz_new14/
   Container(
     padding: const EdgeInsets.all(20),
     width: double.infinity,
-    height: 180, // ★高さを変える
+    height: 200,  //高さを変える
     color: Colors.yellow,
     child: Column(
       children: [
-        Text('第${_listIndex + 1}問 / ${_quizlistCnt}問中'),
+        Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
         SizedBox(height: 10),
-        Text(quizlist[_listIndex]["question"]),
+        Text(quizlist[listIndex]["question"]),
         // ★ヒントここから
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
             setState(() {
-              _hint = quizlist[_listIndex]["hint"];
+              hint = quizlist[listIndex]["hint"];
             });
           },
           child: Text("ヒント"),
         ),
         SizedBox(height: 10),
-        Text(_hint),
+        Text(hint),
         // ★ヒントここまで
       ],
     ),
@@ -91,9 +106,9 @@ https://webgakushu.com/flutter/quiz_new14/
 ```dart
   //再描画
   setState(() {
-    _listIndex++;
-    _selectedBtn = 0;
-    _hint = ""; //ヒント初期化
+    listIndex++;
+    selectedBtn = 0;
+    hint = ""; //ヒント初期化
   });
 ```
 
@@ -118,41 +133,43 @@ https://webgakushu.com/flutter/quiz_new14/
 Container(
   padding: const EdgeInsets.all(20),
   width: double.infinity,
-  height: 220,  //高さの調整
+  height: 200,
   color: Colors.yellow,
   child: Column(
     children: [
-      Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+      Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
       SizedBox(height: 10),
       //ここから
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "●" * _correctCnt,
+            "●" * correctCnt,
             style: TextStyle(color: Colors.red),
           ),
           Text(" / "),
           Text(
-            "×" * (_listIndex - _correctCnt),
+            "×" * (listIndex - correctCnt),
             style: TextStyle(color: Colors.blue),
           ),
         ],
       ),
       SizedBox(height: 10),
       //ここまで
-      Text(quizlist[_listIndex]["question"]),
+      Text(quizlist[listIndex]["question"]),
+      // ★ヒントここから
       SizedBox(height: 10),
       ElevatedButton(
         onPressed: () {
           setState(() {
-            _hint = quizlist[_listIndex]["hint"];
+            hint = quizlist[listIndex]["hint"];
           });
         },
         child: Text("ヒント"),
       ),
       SizedBox(height: 10),
-      Text(_hint),
+      Text(hint),
+      // ★ヒントここまで
     ],
   ),
 ),

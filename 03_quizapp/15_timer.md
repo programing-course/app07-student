@@ -50,35 +50,35 @@ import 'result.dart';
 ```dart
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  String _resultText = "";
-  int _correctCnt = 0;
-
+  //ローカル変数
   int _currentSec = 10; //③タイマー
   bool _timeOver = false; //③タイムオーバー判定
 
+  @override
+  void initState() {
+    super.initState();
+
+    listIndex = 0;
+    quizlistCnt = quizlist.length;
+    selectedBtn = 0;
+    resultText = "";
+    correctCnt = 0;
+
+    //④タイマースタート
+    countTimer();
+  }
+
   bool lastCheck() {
-    if (_listIndex == _quizlistCnt - 1) {
+    if (listIndex == quizlistCnt - 1) {
       return true;
     }
     return false;
   }
 
-  @override
-
-  //④タイマースタート（一番最初に動き出す）
-  void initState() {
-    super.initState();
-    countTimer();
-  }
-
-  //④タイマー制御（1秒毎に実行される）
   Timer countTimer() {
     return Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       //⑤回答有無
-      if (_selectedBtn == 0) {
+      if (selectedBtn == 0) {
         //⑤タイムオーバー判定
         if (_currentSec == 0) {
           timer.cancel();
@@ -101,20 +101,21 @@ class _QuestionPageState extends State<QuestionPage> {
   void answerSelect() async {
     //⑤タイムオーバー判定追加
     if (_timeOver) {
-      _resultText = "タイムオーバー";
+      resultText = "タイムオーバー";
     } else {
-      if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-        _resultText = "正解！";
-        _correctCnt++;
+      if (quizlist[listIndex]["correct"] == selectedBtn) {
+        resultText = "正解！";
+        correctCnt++;
       } else {
-        _resultText = "ざんねん・・・";
+        resultText = "ざんねん・・・";
       }
     }
 
     await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(_resultText),
+        content: Text(resultText),
         actions: [
           TextButton(
             onPressed: () {
@@ -122,12 +123,13 @@ class _QuestionPageState extends State<QuestionPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return ResultPage(_quizlistCnt, _correctCnt);
+                      //result.dartのPesultPage.classに飛ぶ
+                      return ResultPage();
                     },
                   ),
                 );
               } else {
-                Navigator.pop(context); //ダイアログを閉じる
+                Navigator.pop(context);
               }
             },
             child: Text(lastCheck() ? "結果発表" : "次の問題"),
@@ -136,16 +138,13 @@ class _QuestionPageState extends State<QuestionPage> {
       ),
     );
 
-    //再描画
-    if (this.mounted) {
-      setState(() {
-        _listIndex++; // 次の問題へ
-        _selectedBtn = 0; // 選ばれたボタンの情報をリセット
-        _currentSec = 10; //⑥タイマーリセット
-        _timeOver = false;//⑥ゲームオーバー判定リセット
-        countTimer(); //⑥タイマー再起動
-      });
-    }
+    setState(() {
+      listIndex++;
+      selectedBtn = 0;
+      _currentSec = 10; //⑥タイマーリセット
+      _timeOver = false; //⑥ゲームオーバー判定リセット
+      countTimer(); //⑥タイマー再起動
+    });
   }
 
   @override
@@ -156,7 +155,6 @@ class _QuestionPageState extends State<QuestionPage> {
 ```
 
 - [ ] ⑦ボタンが押された時の処理　answerSelectをコメントアウト
-
 
 ```dart
 
@@ -180,4 +178,28 @@ for (int i = 1; i <= 4; i++) ...{
 
 //省略
 
+```
+
+- [ ] ⑧タイマーのTextを変数に変更
+
+```dart
+
+Container(
+  width: 50,
+  height: 50,
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(50),
+    color: Colors.pink,
+  ),
+  child: Center(
+    child: Text(
+      //変数に変更
+      "${_currentSec}",
+      style: TextStyle(
+        fontSize: 20,
+        color: Colors.white,
+      ),
+    ),
+  ),
+)
 ```

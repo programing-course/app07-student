@@ -15,35 +15,32 @@
 
 ![question](img/05_question1-2.png)
 
-①変数「_listIndex」を作成、初期値に０を代入  
-②変数「_quizlistCnt」を作成、初期値に問題数を代入
+①変数「listIndex」を作成、初期値に０を代入  
+②変数「quizlistCnt」を作成、初期値に問題数を代入
+
+`import`と`QuestionPage`の間に書く
 
 ```dart
 
-class _QuestionPageState extends State<QuestionPage> {
-  //① インデックス番号用の変数
-  int _listIndex = 0;
-  //② 全問題数用の変数
-  int _quizlistCnt = quizlist.length;
+import 'package:flutter/material.dart';
+import 'quizlist.dart';
 
-@override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("問題"),
-      ),
-      body: Center(
-        <省略>
-      ),
-    );
-  }
+//① インデックス番号用の変数
+int listIndex = 0;
+//② 全問題数用の変数
+int quizlistCnt = quizlist.length;
+
+class QuestionPage extends StatefulWidget {
+  const QuestionPage({super.key});
+
+  @override
+  _QuestionPageState createState() => _QuestionPageState();
 }
 
 ```
 
-③quizlistのインデックス番号を「_listIndex」に置き換える
-④全問題数を「_quizlistCnt」に置き換える
+③quizlistのインデックス番号を「listIndex」に置き換える
+④全問題数を「quizlistCnt」に置き換える
 
 ```dart
 
@@ -59,22 +56,22 @@ body: Center(
           children: [
             //③ 1→${_listIndex + 1}して表示用にする
             //④${_quizlistCnt}
-            Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+            Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
             SizedBox(height: 10),
             //③ 0→_listIndex
-            Text(quizlist[_listIndex]["question"]),
+            Text(quizlist[listIndex]["question"]),
           ],
         ),
       ),
       SizedBox(height: 20),
       ElevatedButton(
         onPressed: () {},
-        //③ 0→_listIndex
-        child: Text(quizlist[_listIndex]["answer1"]),
+        //③ 0→listIndex
+        child: Text(quizlist[listIndex]["answer1"]),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.orange,
           foregroundColor: Colors.white,
-          fixedSize: Size(200, 50),
+          fixedSize: Size(300, 50),
         ),
       ),
       SizedBox(height: 20),
@@ -95,6 +92,11 @@ body: Center(
 import 'package:flutter/material.dart';
 import 'quizlist.dart';
 
+//① インデックス番号用の変数
+int listIndex = 0;
+//② 全問題数用の変数
+int quizlistCnt = quizlist.length;
+
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
 
@@ -103,15 +105,13 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-  //① インデックス番号用の変数
-  int _listIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -124,23 +124,24 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  //② 1→${_listIndex + 1}して表示用にする
-                  Text("第${_listIndex + 1}問 / □問中"),
+                  //③ 1→${listIndex + 1}して表示用にする
+                  //④${quizlistCnt}
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
                   SizedBox(height: 10),
-                  //② 0→_listIndex
-                  Text(quizlist[_listIndex]["question"]),
+                  //③ 0→listIndex
+                  Text(quizlist[listIndex]["question"]),
                 ],
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
-              //② 0→_listIndex
-              child: Text(quizlist[_listIndex]["answer1"]),
+              //選択肢表示 Text()内を変更
+              child: Text(quizlist[listIndex]["answer1"]),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 foregroundColor: Colors.white,
-                fixedSize: Size(200, 50),
+                fixedSize: Size(300, 50),
               ),
             ),
             SizedBox(height: 20),
@@ -151,7 +152,5 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 }
 
-
-// 省略
 
 ```

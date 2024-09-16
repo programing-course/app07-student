@@ -12,24 +12,33 @@
 
 ## **演習**
 
-① ResultPageで、総問題数と正解数を受け取る  
-② ResultPageで、総問題数と正解数を使えるようにする  
+① 表示の枠を作る  
+② 結果表示の文字を作る  
+③ 最初のページに戻るボタンを作る  
+
+実行結果を見て、自分で考えて書いてみよう  
+「縦に３つのwidgetを配置」  
 
 <br>
 
 ```dart
 
-class ResultPage extends StatefulWidget {
-  //①コメントアウト const ResultPage({super.key});
-  //①総問題数と正解数を受け取る
-  ResultPage(this._quizlistCnt, this._correctCnt);
-  //②型を宣言し、総問題数と正解数を使えるようにする
-  int _quizlistCnt;
-  int _correctCnt;
+//省略
 
-  @override
-  _ResultPageState createState() => _ResultPageState();
-}
+body: Center(
+  child: Column(
+    children: [
+      Text("○問中○問"),
+      Image.asset(""),
+      ElevatedButton(
+        onPressed: () {},
+        child: Text("もう一回"), // ボタンのテキスト
+      )
+    ],
+  ),
+),
+
+//省略
 
 ```
  
@@ -37,12 +46,10 @@ class ResultPage extends StatefulWidget {
 
 ```dart
 
-mport 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ResultPage extends StatefulWidget {
-  ResultPage(this._quizlistCnt, this._correctCnt);
-  int _quizlistCnt;
-  int _correctCnt;
+  const ResultPage({super.key});
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -54,13 +61,27 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("結果発表"),
+        automaticallyImplyLeading: false,
       ),
-      body: Center(),
+      body: Center(
+        child: Column(
+          children: [
+            Text("○問中○問"),
+            Image.asset(""),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("もう一回"), // ボタンのテキスト
+            )
+          ],
+        ),
+      ),
     );
   }
 }
+
 
 
 ```

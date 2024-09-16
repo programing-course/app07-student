@@ -36,16 +36,16 @@ List<Map<String,Color>> Colorcode = [
 
 ## **カラーコードを変換**
 
-一般的にカラーコードを調べると#から始まる7桁の英数字であらわされている。
-例えば
-黒のカラーコードを調べると
-#000000
-と出てくるが、このままでは使うことができない。
-そこで使えるように少し変更をしてあげる必要がある。
-#を0xffに変える
-#000000->0xff000000
-と変えてあげよう
-他の色でも同様のことを行えばよい
+一般的にカラーコードを調べると#から始まる7桁の英数字であらわされている。  
+例えば  
+黒のカラーコードを調べると  
+#000000  
+と出てくるが、このままでは使うことができない。  
+そこで使えるように少し変更をしてあげる必要がある。  
+#を0xffに変える  
+#000000->0xff000000  
+と変えてあげよう  
+他の色でも同様のことを行えばよい  
 
 <br>
 
@@ -63,19 +63,14 @@ List<Map<String,Color>> Colorcode = [
 //省略
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  String _resultText = "";
-  int _correctCnt = 0;
 
 
   void answerSelect() {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      _resultText = "正解！";
-      _correctCnt++;
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
     }else{
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
   }
 
@@ -97,9 +92,9 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
                   SizedBox(height: 10),
-                  Text(quizlist[_listIndex]["question"]),
+                  Text(quizlist[listIndex]["question"]),
                 ],
               ),
             ),
@@ -107,10 +102,10 @@ class _QuestionPageState extends State<QuestionPage> {
             for (int i = 1; i <= 4; i++) ...{
               ElevatedButton(
                 onPressed: () {
-                  _selectedBtn = i;
+                  selectedBtn = i;
                   answerSelect();
                 },
-                child: Text(quizlist[_listIndex]["answer$i"]),
+                child: Text(quizlist[listIndex]["answer$i"]),
                 style: ElevatedButton.styleFrom(
                   //色を直接指定しているのではなくListから黒のカラーコードを持ってきている部分
                   backgroundColor: Colorcode[0]["black"], 

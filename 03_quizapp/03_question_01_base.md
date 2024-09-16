@@ -94,7 +94,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -157,7 +158,7 @@ class _QuestionPageState extends State<QuestionPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange, //④ボタンの背景色
                 foregroundColor: Colors.white,  //④文字の色
-                fixedSize: Size(200, 50),       //④横幅高さ
+                fixedSize: Size(300, 50),       //④横幅高さ
               ),
             ),
             SizedBox(height: 20),

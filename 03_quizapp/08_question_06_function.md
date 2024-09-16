@@ -20,9 +20,6 @@
 
 ```dart
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
 
   //①関数を作成
   void answerSelect() {
@@ -36,15 +33,15 @@ class _QuestionPageState extends State<QuestionPage> {
       for (int i = 1; i <= 4; i++) ...{
         ElevatedButton(
           onPressed: () {
-            _selectedBtn = i;
-            //②答えが選択された時の処理を呼び出す
+            selectedBtn = i;
+            //①答えが選択された時の処理を呼び出す
             answerSelect();
           },
-          child: Text(quizlist[_listIndex]["answer$i"]),
+          child: Text(quizlist[listIndex]["answer$i"]),
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.orange,
             foregroundColor: Colors.white,
-            fixedSize: Size(200, 50),
+            fixedSize: Size(300, 50),
           ),
         ),
         SizedBox(height: 20),
@@ -62,15 +59,12 @@ class _QuestionPageState extends State<QuestionPage> {
 ```dart
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
 
   // 答えが選択された時の処理
   void answerSelect() {
 
     // ②正解 / 不正解のチェック
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
       //正解
     }else{
       //不正解
@@ -89,26 +83,37 @@ class _QuestionPageState extends State<QuestionPage> {
 ④正解数をカウントする  
 
 ```dart
+import 'package:flutter/material.dart';
+import 'quizlist.dart';
+
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+int selectedBtn = 0;
+//③ 正解 or 不正解
+String resultText = "";
+//④ 正解数
+int correctCnt = 0;
+
+class QuestionPage extends StatefulWidget {
+  const QuestionPage({super.key});
+
+  @override
+  _QuestionPageState createState() => _QuestionPageState();
+}
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  //③ 正解 or 不正解
-  String _resultText = "";
-  //④ 正解数
-  int _correctCnt = 0;
+  
 
   // 答えが選択された時の処理
   void answerSelect() {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
       //③
-      _resultText = "正解！";
+      resultText = "正解！";
       //④
-      _correctCnt++;
+      correctCnt++;
     }else{
       //③
-      _resultText = "ざんねん・・・";
+      resultText = "ざんねん・・・";
     }
   }
 
@@ -160,6 +165,14 @@ trueの処理が実行されていることがわかります
 import 'package:flutter/material.dart';
 import 'quizlist.dart';
 
+int listIndex = 0;
+int quizlistCnt = quizlist.length;
+int selectedBtn = 0;
+//③ 正解 or 不正解
+String resultText = "";
+//④ 正解数
+int correctCnt = 0;
+
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
 
@@ -168,24 +181,12 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-  int _listIndex = 0;
-  int _quizlistCnt = quizlist.length;
-  int _selectedBtn = 0;
-  //③ 正解 or 不正解
-  String _resultText = "";
-  //④ 正解数
-  int _correctCnt = 0;
-
-  // 答えが選択された時の処理
   void answerSelect() {
-    if (quizlist[_listIndex]["correct"] == _selectedBtn) {
-      //③
-      _resultText = "正解！";
-      //④
-      _correctCnt++;
-    }else{
-      //③
-      _resultText = "ざんねん・・・";
+    if (quizlist[listIndex]["correct"] == selectedBtn) {
+      resultText = "正解！";
+      correctCnt++;
+    } else {
+      resultText = "ざんねん・・・";
     }
   }
 
@@ -194,7 +195,8 @@ class _QuestionPageState extends State<QuestionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceTint,
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 65, 105, 121),
         title: Text("問題"),
       ),
       body: Center(
@@ -207,9 +209,9 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.yellow,
               child: Column(
                 children: [
-                  Text("第${_listIndex + 1}問 / ${_quizlistCnt}問中"),
+                  Text("第${listIndex + 1}問 / ${quizlistCnt}問中"),
                   SizedBox(height: 10),
-                  Text(quizlist[_listIndex]["question"]),
+                  Text(quizlist[listIndex]["question"]),
                 ],
               ),
             ),
@@ -217,25 +219,26 @@ class _QuestionPageState extends State<QuestionPage> {
             for (int i = 1; i <= 4; i++) ...{
               ElevatedButton(
                 onPressed: () {
-                  _selectedBtn = i;
-                  //① 関数呼び出し
+                  selectedBtn = i;
+                  //①答えが選択された時の処理を呼び出す
                   answerSelect();
                 },
-                child: Text(quizlist[_listIndex]["answer$i"]),
+                child: Text(quizlist[listIndex]["answer$i"]),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
-                  fixedSize: Size(200, 50),
+                  fixedSize: Size(300, 50),
                 ),
               ),
               SizedBox(height: 20),
-            },
+            }, 
           ],
         ),
       ),
     );
   }
 }
+
 
 
 ```
