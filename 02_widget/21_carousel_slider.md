@@ -21,7 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_animate:
-  carousel_slider: ^4.2.1　←ここ追加
+  carousel_slider: ^5.0.0d　←ここ追加　最新バージョンでないとエラーになる場合があります
 
 ```
 
