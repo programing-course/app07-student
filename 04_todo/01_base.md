@@ -198,7 +198,7 @@ class _RecipePageState extends State<RecipePage> {
 
 **③切り替えのための変数を作る**
 
-donfig.dart
+config.dart
 
 ```dart
 
