@@ -1,5 +1,7 @@
 # Todoアプリを作ろう 01
 
+https://webgakushu.com/flutter/todoapp_new/
+
 ## 実行結果
 
 ![base1-1](img/01_base1-1.png)
@@ -198,7 +200,7 @@ class _RecipePageState extends State<RecipePage> {
 
 **③切り替えのための変数を作る**
 
-config.dart
+donfig.dart
 
 ```dart
 
