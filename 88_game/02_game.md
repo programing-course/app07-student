@@ -2,8 +2,6 @@
 
 ## **game.dart**
 
-### **ワイヤーフレーム**
-
 ### **最初に知っておくこと**
 
 Flutter Flameにはゲーム制作のために必要な描画や動作を制御するコンポーネントが用意されています
@@ -27,7 +25,12 @@ PCのフレームレート(fps)の単位
 
 <br>
 
-### **ベースを作る**
+### **全体の流れを整理**
+
+![game](img/02_game1-5.png)
+<br>
+
+## **ベースを作る**
 
 **①FlameGameコンポーネントを使う**
 
@@ -58,7 +61,9 @@ class MainGame extends FlameGame {
 
 <br><br>
 
-**②背景を作る**
+## **背景を作る**
+
+**②スクリーンのサイズ**
 
 **【game.dart】**
 
@@ -70,7 +75,7 @@ import 'package:flutter/material.dart';
 import 'screen.dart'; // ①
 
 // ①スクリーンサイズを保持する変数
-late final Vector2 screenSize;
+late Vector2 screenSize;
 
 class MainGame extends FlameGame {
   final BuildContext context;
@@ -110,7 +115,7 @@ class MainGame extends FlameGame {
 
 **【setting.dart】**
 
-変数を設定、すべてのdartと使用する変数をまとめて設定します
+変数を設定、すべてのdartで使用する変数をまとめて設定します
 
 
 ```dart
@@ -137,7 +142,7 @@ class BackScreen extends RectangleComponent with HasGameRef<MainGame> {
   @override
   Future<void> onLoad() async {
     position = Vector2(0, 0);
-    size = Vector2(gameRef.size.x, gameRef.size.y);
+    size = Vector2(screenSize.x, screenSize.y);
     paint = Paint()..color = Color.fromARGB(255, 68, 185, 183);
   }
 
@@ -151,7 +156,7 @@ class ground extends RectangleComponent with HasGameRef<MainGame> {
   @override
   Future<void> onLoad() async {
     position = Vector2(0, Y_GROUND_POSITION);
-    size = Vector2(gameRef.size.x, screenSize.y * 3 / 4);
+    size = Vector2(screenSize.x, screenSize.y * 3 / 4);
     paint = Paint()..color = Color.fromARGB(255, 150, 83, 56);
   }
 
@@ -175,6 +180,7 @@ https://flame.tnantoka.com/examples/rect/
 
 **game.dartのMainGameクラスの情報を扱えるようにする**
 
+
 classの定義の後ろにwithをつけて、別のコンポーネントを追加することができる（ミックスイン）
 
 
@@ -187,7 +193,7 @@ with HasGameRef<MainGame>
 
 <br>
 
-**gameRefをつける**
+**使い方：gameRefをつける**
 
 game.dartのMainGameクラスの情報を使う場合は`gameRef.`をつける
 フィールドの横幅、高さは`FlameGame`widgetに含まれる
@@ -198,5 +204,4 @@ gameRef.size.x
 gameRef.size.y
 
 ```
-
 

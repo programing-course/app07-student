@@ -1,8 +1,8 @@
 # **プレーヤーの表示**
 
-## **geme.dart**
+## **プレイヤーのクラスを呼び出す**
 
-### **プレイヤーのクラスを呼び出す**
+**【geme.dart】**
 
 ①プレイヤー描画  
 ②player.dartをimport
@@ -55,13 +55,13 @@ class MainGame extends FlameGame {
 
 ```
 
-## **player.dart**
+## **プレーヤーの描画**
 
 ![mysprite](img/03_mysprite1-1.png)
 
 <br>
 
-①スプライトの準備
+### **①スプライトの準備**
 
 `assets`フォルダを作成、その中に`images`フォルダを作成
 
@@ -78,7 +78,7 @@ assets:
 
 <br>
 
-②スプライトの表示
+### **②スプライトの表示**
 
 **【setting.dart】**
 
@@ -135,7 +135,7 @@ class Player extends SpriteComponent with HasGameRef<MainGame> {
 
 **【game.dart】**
 
-①パッケージ追加
+### **①パッケージ追加**
 
 ```dart
 
@@ -143,7 +143,7 @@ import 'package:flame/input.dart';
 
 ```
 
-②`HasKeyboardHandlerComponents`を追加
+### **②`HasKeyboardHandlerComponents`を追加**
 
 ```dart
 
@@ -155,7 +155,7 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
 
 **【player.dart】**
 
-①パッケージ追加
+### **①パッケージ追加**
 
 ```dart
 
@@ -163,7 +163,7 @@ import 'package:flutter/services.dart';
 
 ```
 
-②`KeyboardHandler`を追加
+### **②`KeyboardHandler`を追加**
 
 ```dart
 
@@ -171,7 +171,7 @@ class MySprite extends SpriteComponent with HasGameRef<MainGame>,KeyboardHandler
 
 ```
 
-③変数（移動量、スピード）
+### **③変数（移動量、スピード）**
 
 ```dart
 
@@ -193,7 +193,7 @@ class MySprite extends SpriteComponent
     }
 ```
 
-④キーを検知して移動量追加
+### **④キーを検知して移動量追加**
 
 ```dart
 
@@ -238,7 +238,7 @@ class MySprite extends SpriteComponent
 
 ```
 
-⑤読み込み
+### **⑤読み込み**
 
 ```dart
 
@@ -264,7 +264,7 @@ class MySprite extends SpriteComponent
 
 【ソースコード】
 
-【setting.dart】
+**【setting.dart】**
 
 ```dart
 
@@ -280,7 +280,7 @@ var PLAYER_SIZE_Y = 60.0;
 
 ```
 
-【game.dart】
+**【game.dart】**
 
 ```dart
 
@@ -293,7 +293,7 @@ import 'player.dart';
 // スクリーンサイズを保持する変数
 late final Vector2 screenSize;
 
-// ①キーボード操作
+// ①キーボード操作（HasKeyboardHandlerComponentsを追加）
 class MainGame extends FlameGame with HasKeyboardHandlerComponents {
   final BuildContext context;
   MainGame(this.context);
@@ -330,7 +330,7 @@ class MainGame extends FlameGame with HasKeyboardHandlerComponents {
 
 ```
 
-【player.dart】
+**【player.dart】**
 
 ```dart
 
@@ -408,3 +408,21 @@ class Player extends SpriteComponent
 
 
 ```
+
+### **全体の流れをもう一度整理**
+
+ここまで制作したプログラムを見ながら全体の流れを整理しよう！！
+
+![game](img/02_game1-5.png)
+
+### **コンポーネントの種類**
+
+|  コンポーネント  |  説明  | 使用方法  |
+| :---- | :---- | ---- |
+|  SpriteComponent  |  画像（スプライト）を表示  |  キャラクターや背景の画像の描画  |
+|  RectangleComponent  |  四角形を描画<br>頂点の座標を指定して多角形を描画することもできる  |  特定の色で背景や枠を表示や障害物の描画  |
+|  TextComponent  |  テキストを描画  |  スコアー、ゲームオーバーなどのメッセージ表示  |
+|  AnimationComponent  |  アニメーション用  |  連続的に画像を切り替えてアニメーションを表現  |
+|  CircleComponent  |  円形を描画  |  障害物の描やエフェクトに使える  |
+|  ParallaxComponent  |  背景が異なる速度でスクロールする効果  |  奥行きのある背景を表現できる  |
+|  ParticleComponent  |  パーティクルエフェクトを作成  |  爆発や煙、光の効果  |

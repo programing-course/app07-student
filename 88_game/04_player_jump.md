@@ -1,10 +1,12 @@
 # **プレーヤーのジャンプの動き**
 
-## **player.dart**
+## **動きの仕組みを整理**
 
 ![mysprite](img/04_player_move.png)
 
 ### **重力をかける**
+
+**【player.dart】**
 
 ```dart
 class Player extends SpriteComponent
@@ -19,6 +21,7 @@ class Player extends SpriteComponent
 
   // ①常に重力をかける
   void applyGravity(double dt, double gravity) {
+    // 地上にいない時
     if (!isOnGround) {
       velocity.y += gravity * dt; // 重力を適用して下降
     }
@@ -43,15 +46,17 @@ class Player extends SpriteComponent
 
 ## **地上にいるかどうかの判定**
 
+**【player.dart】**
+
 ```dart
 
   // ②地面との接触
   void checkGroundCollision() {
     // 地上より下の場合
-    if (position.y >= gameRef.size.y - size.y / 2 - gameRef.size.y / 4) {
+    if (position.y >= screenSize.y - size.y / 2 - screenSize.y / 4) {
       isOnGround = true;
 
-      position.y = gameRef.size.y - size.y / 2 - gameRef.size.y / 4;
+      position.y = screenSize.y - size.y / 2 - screenSize.y / 4;
       velocity.y = 0;
     } else {
       //空中にいる時
@@ -74,6 +79,17 @@ class Player extends SpriteComponent
 
 ```
 
+## **ジャンプした時**
 
-## **ジャンプして戻る動作**
+```dart
 
+// ジャンプ
+  void jump() {
+    //地上にいる時だけ
+    if (isOnGround) {
+      velocity.y = -jumpForce;
+      isOnGround = false; // ジャンプ中は地面にいない
+    }
+  }
+
+```
