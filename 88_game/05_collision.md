@@ -119,6 +119,8 @@ class Player extends SpriteComponent
 
 **③当たり判定の関数を追加**
 
+![mysprite](img/05_collision1-2.png)
+
 ```dart
 
   //省略
