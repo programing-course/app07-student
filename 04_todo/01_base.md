@@ -57,9 +57,6 @@ class _NaviAppState extends State<NaviApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("タイトルを切り替える"),
-      ),
       body: Text("bodyを切り替える"),
       // ----- ボトムナビゲーション -----
       bottomNavigationBar: BottomNavigationBar(
@@ -112,6 +109,9 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("topページタイトル"),
+      ),
       body: Center(
         child: Text("topページ"),
       ),
@@ -137,6 +137,9 @@ class _TodoListPageState extends State<TodoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("買い物リストタイトル"),
+      ),
       body: Center(
         child: Text("買い物リスト"),
       ),
@@ -163,6 +166,9 @@ class _StockListPageState extends State<StockListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("在庫管理タイトル"),
+      ),
       body: Center(
         child: Text("在庫管理"),
       ),
@@ -189,6 +195,9 @@ class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        title: Text("レシピ登録タイトル"),
+      ),
       body: Center(
         child: Text("レシピ登録"),
       ),
@@ -200,21 +209,11 @@ class _RecipePageState extends State<RecipePage> {
 
 **③切り替えのための変数を作る**
 
-donfig.dart
-
-```dart
-
-//③サイドバーメニューの設定
-List<String> titlelist = ["ホーム","買い物リスト", "ページ２", "ページ３"];
-
-```
-
 main.dart
 
 ```dart
 
 import 'package:flutter/material.dart';
-import 'config.dart'; //③追加
 import 'home.dart'; //③追加
 import 'todolist.dart'; //③追加
 import 'stocklist.dart'; //③追加
@@ -248,10 +247,6 @@ class _NaviAppState extends State<NaviApp> {
       RecipePage()
     ];
     return Scaffold(
-      appBar: AppBar(
-        // ③リストから取得
-        title: Text("${titlelist[_selectedIndex]}"),
-      ),
       // ③飛び先のクラスを呼び出す
       body: _pages[_selectedIndex],
       // ----- ボトムナビゲーション -----
