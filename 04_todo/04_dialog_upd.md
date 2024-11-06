@@ -319,3 +319,50 @@ Entry関数の下に追加
 ```
 
 ![upd1-2](img/04_upd1-4.png)
+
+### ⑥todoListのダミーデータを削除する
+
+空の状態から登録、更新ができることを確認しよう
+
+```dart
+
+List<Map<String, dynamic>> todoList = [
+  // {
+  //   'idx': 0,
+  //   'date': DateTime(2024, 10, 01, 0, 0, 0),
+  //   'title': 'じゃがいも',
+  //   'memo': '特売',
+  //   'category': 2,
+  //   'star': false,
+  //   'check': false,
+  // },
+  // {
+  //   'idx': 1,
+  //   'date': DateTime(2024, 10, 01, 0, 0, 0),
+  //   'title': 'たまねぎ',
+  //   'memo': 'スーパー',
+  //   'category': 2,
+  //   'star': false,
+  //   'check': false,
+  // },
+  // {
+  //   'idx': 2,
+  //   'date': DateTime(2024, 10, 01, 0, 0, 0),
+  //   'title': '牛肉',
+  //   'memo': '肉屋さん',
+  //   'category': 1,
+  //   'star': false,
+  //   'check': false,
+  // },
+  // {
+  //   'idx': 3,
+  //   'date': DateTime(2024, 10, 02, 0, 0, 0),
+  //   'title': '米',
+  //   'memo': 'ネット',
+  //   'category': 3,
+  //   'star': false,
+  //   'check': false,
+  // }
+];
+
+```
