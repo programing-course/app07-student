@@ -20,7 +20,7 @@ child: ListView.builder(
     itemBuilder: (context, index) {
       // ①GestureDetectorで要素をタップできるように
       // Cardを「child:Card・・・」にreturnの後に「GestureDetector」
-//Tapされたときの処理も追加
+    //Tapされたときの処理も追加
       return GestureDetector(
         onTap: () async {
           var RtnText = await showDialog(
