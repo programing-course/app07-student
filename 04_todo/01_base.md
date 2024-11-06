@@ -2,6 +2,11 @@
 
 https://webgakushu.com/flutter/todoapp_new/
 
+## サイトマップ
+
+![base1-1](img/01_base1-0.png)
+
+
 ## 実行結果
 
 ![base1-1](img/01_base1-1.png)
@@ -43,7 +48,7 @@ class MyApp extends StatelessWidget {
 
 **①ボトムナビゲーションのベース**
 
-main.dart
+**【main.dart】**
 
 ```dart
 
@@ -94,7 +99,7 @@ class _NaviAppState extends State<NaviApp> {
 例として「home.dart」「todolist.dart」「stocklist.dart」「recipe.dart」を追加して  
 ベースのclassを作る
 
-home.dart
+**【home.dart】**
 
 ```dart
 
@@ -121,7 +126,8 @@ class _HomeAppState extends State<HomeApp> {
 
 ```
 
-todolist.dart
+**【todolist.dart】**
+
 ```dart
 
 import 'package:flutter/material.dart';
@@ -149,7 +155,7 @@ class _TodoListPageState extends State<TodoListPage> {
 
 ```
 
-stocklist.dart
+**【stocklist.dart】**
 
 ```dart
 
@@ -178,7 +184,7 @@ class _StockListPageState extends State<StockListPage> {
 
 ```
 
-recipe.dart
+**【recipe.dart】**
 
 ```dart
 
@@ -209,7 +215,7 @@ class _RecipePageState extends State<RecipePage> {
 
 **③切り替えのための変数を作る**
 
-main.dart
+**【main.dart】**
 
 ```dart
 
@@ -345,7 +351,7 @@ class _NaviAppState extends State<NaviApp> {
 例として「home.dart」「todolist.dart」「stocklist.dart」「recipe.dart」を追加して  
 ベースのclassを作る
 
-home.dart
+**【home.dart】**
 
 ```dart
 
@@ -369,7 +375,8 @@ class _HomeAppState extends State<HomeApp> {
 
 ```
 
-todolist.dart
+**【todolist.dart】**
+
 ```dart
 
 import 'package:flutter/material.dart';
@@ -394,7 +401,7 @@ class _TodoListPageState extends State<TodoListPage> {
 
 ```
 
-stocklist.dart
+**【stocklist.dart】**
 
 ```dart
 
@@ -420,7 +427,7 @@ class _StockListPageState extends State<StockListPage> {
 
 ```
 
-recipe.dart
+**【recipe.dart】**
 
 ```dart
 
@@ -448,7 +455,7 @@ class _RecipePageState extends State<RecipePage> {
 
 **③切り替えのための変数を作る**
 
-donfig.dart
+**【config.dart】**
 
 ```dart
 
@@ -457,7 +464,7 @@ List<String> titlelist = ["ホーム","買い物リスト", "ページ２", "ペ
 
 ```
 
-main.dart
+**【main.dart】**
 
 ```dart
 import 'package:flutter/material.dart';
