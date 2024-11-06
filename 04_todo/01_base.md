@@ -53,7 +53,11 @@ class MyApp extends StatelessWidget {
 
 **【main.dart】**
 
+`class MyApp`の下に追加
+
 ```dart
+
+//省略
 
 class NaviApp extends StatefulWidget {
   @override
