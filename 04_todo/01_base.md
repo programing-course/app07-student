@@ -11,6 +11,9 @@ https://webgakushu.com/flutter/todoapp_new/
 
 ![base1-1](img/01_base1-1.png)
 
+どちらか使いたいナビゲーションを選択してください
+
+
 ### アプリのベースを作る
 
 ```Dart
