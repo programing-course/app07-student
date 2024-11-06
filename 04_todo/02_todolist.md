@@ -9,7 +9,7 @@
 
 ![base1-2](img/02_todolist1-2.png)
 
-### ①フローティングボタンを追加
+### ①グループとフローティングボタンを追加
 
 ```Dart
 
@@ -21,7 +21,7 @@ class _TodoListPageState extends State<TodoListPage> {
         title: Text("買い物リスト"),
       ),
       body: Center(
-        //グループを作る
+        //①グループを作る
         child: Column(children: [
           SizedBox(height: 20),
           Container(),
