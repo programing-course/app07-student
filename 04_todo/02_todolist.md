@@ -27,7 +27,7 @@ class _TodoListPageState extends State<TodoListPage> {
           Container(),
         ]),
       ),
-      //ボタンを作る
+      //①ボタンを作る
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.add),
