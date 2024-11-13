@@ -4,6 +4,7 @@
 
 ![object1-1](img/07_object1-1.png)
 
+
 **【game.dart】**
 
 各ステージに表示するオブジェクトを
@@ -24,28 +25,10 @@ import 'object.dart';
     switch (currentScene) {
       case 1:
         //① オブジェクト（三角形用）関数呼び出し
-        //色と頂点の位置を指定
-        await triangleRemove(
-            Color.fromARGB(255, 211, 46, 46), //色
-            screenSize.x / 2,                 //頂点１のX
-            Y_GROUND_POSITION - 50,           //頂点１のY
-            screenSize.x / 2 - 50,            //頂点２のX
-            Y_GROUND_POSITION,                //頂点２のY
-            screenSize.x / 2 + 50,            //頂点３のX
-            Y_GROUND_POSITION);               //頂点３のY
+        await add(triangle());
         break;
       default:
     }
-  }
-
-  // 三角形描画用
-  // 引数
-  // 色、３つの頂点（x,y）
-  Future<void> triangleRemove(
-      color, pos1_x, pos1_y, pos2_x, pos2_y, pos3_x, pos3_y) async {
-    triangle Component =
-        triangle(color, pos1_x, pos1_y, pos2_x, pos2_y, pos3_x, pos3_y);
-    await add(Component);
   }
 
 
@@ -55,39 +38,22 @@ import 'object.dart';
 
 ### **②オブジェクト表示用のdartを作成**
 
-```dart
+![object1-1](img/07_object1-4.png)
 
-import 'package:flutter/material.dart';
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-import 'game.dart';
+```dart
 
 class triangle extends RectangleComponent
     with HasGameRef<MainGame>, CollisionCallbacks {
-
-  //データ受け取り
-  triangle(this.color, this.pos1_x, this.pos1_y, this.pos2_x, this.pos2_y,
-      this.pos3_x, this.pos3_y);
-
-  var color;
-  double pos1_x;
-  double pos1_y;
-  double pos2_x;
-  double pos2_y;
-  double pos3_x;
-  double pos3_y;
-
   @override
   Future<void> onLoad() async {
-    paint = Paint()..color = color;
+    paint = Paint()..color = Color.fromARGB(255, 211, 46, 46);
 
     anchor = Anchor.topCenter;
 
-    //当たり判定用のHitbox
     add(PolygonHitbox([
-      Vector2(pos1_x, pos1_y),
-      Vector2(pos2_x, pos2_y),
-      Vector2(pos3_x, pos3_y),
+      Vector2(screenSize.x / 2, Y_GROUND_POSITION - 50),
+      Vector2(screenSize.x / 2 - 50, Y_GROUND_POSITION),
+      Vector2(screenSize.x / 2 + 50, Y_GROUND_POSITION),
     ])
       ..collisionType = CollisionType.passive);
   }
@@ -95,12 +61,10 @@ class triangle extends RectangleComponent
   @override
   Future<void> render(Canvas canvas) async {
     super.render(canvas);
-
-    //頂点の座標を指定して描画
     final path = Path();
-    path.moveTo(pos1_x, pos1_y); // 頂点
-    path.lineTo(pos2_x, pos2_y); // 左下
-    path.lineTo(pos3_x, pos3_y); // 右下
+    path.moveTo(screenSize.x / 2, Y_GROUND_POSITION - 50); // 頂点
+    path.lineTo(screenSize.x / 2 - 50, Y_GROUND_POSITION); // 左下
+    path.lineTo(screenSize.x / 2 + 50, Y_GROUND_POSITION); // 右下
     path.close(); // 閉じる
 
     // パスをキャンバスに描画
@@ -128,32 +92,66 @@ class triangle extends RectangleComponent
 
 ```
 
-## **練習：位置を変えて表示**
+## **位置を変えてもう一つ表示する**
+
+![object1-1](img/07_object1-2.png)
+
+<br><br><br>
+
+![object1-1](img/07_object1-5.png)
+
+**ベースになるクラスを作り、描画データをクラスに渡す**  
+**データは【setting.dart】に追加**
+
+![object1-1](img/07_object1-6.png)
+
+**【setting.dart】**
+
+描画データをリストの型で設定
+
+```dart
+
+List<Map<String, dynamic>> trianglelist = [
+  {
+    "color": Color.fromARGB(255, 211, 46, 46),
+    "pos1_x": screenSize.x / 2,
+    "pos1_y": Y_GROUND_POSITION - 50,
+    "pos2_x": screenSize.x / 2 - 50,
+    "pos2_y": Y_GROUND_POSITION,
+    "pos3_x": screenSize.x / 2 + 50,
+    "pos3_y": Y_GROUND_POSITION
+  },
+  {
+    "color": Color.fromARGB(255, 211, 203, 46),
+    "pos1_x": screenSize.x / 4,
+    "pos1_y": Y_GROUND_POSITION - 100,
+    "pos2_x": screenSize.x / 4 - 50,
+    "pos2_y": Y_GROUND_POSITION,
+    "pos3_x": screenSize.x / 4 + 50,
+    "pos3_y": Y_GROUND_POSITION
+  }
+];
+
+
+```
 
 **【game.dart】**
+
+何番目のデータを使うか指定
 
 ```dart
 
 Future<void> objectRemove() async {
+    print("objectRemove");
+    children.whereType<triangle>().forEach((text) {
+      text.removeFromParent();
+    });
+
     switch (currentScene) {
       case 1:
-        await triangleRemove(
-            Color.fromARGB(255, 211, 46, 46),
-            screenSize.x / 2,
-            Y_GROUND_POSITION - 50,
-            screenSize.x / 2 - 50,
-            Y_GROUND_POSITION,
-            screenSize.x / 2 + 50,
-            Y_GROUND_POSITION);
-        //追加
-        await triangleRemove(
-            Color.fromARGB(255, 211, 203, 46),
-            screenSize.x / 4,
-            Y_GROUND_POSITION - 100,
-            screenSize.x / 4 - 50,
-            Y_GROUND_POSITION,
-            screenSize.x / 4 + 50,
-            Y_GROUND_POSITION);
+        //0番目のデータを使用
+        await add(triangle(0));
+        await add(triangle(1));
         break;
       default:
     }
@@ -161,7 +159,48 @@ Future<void> objectRemove() async {
 
 ```
 
-![object1-1](img/07_object1-2.png)
+**【object.dart】**
+
+`trianglelist`から指定のデータ番号のデータで描画する
+
+```dart
+
+class triangle extends RectangleComponent
+    with HasGameRef<MainGame>, CollisionCallbacks {
+  //データ番号を受け取る
+  triangle(this.num);
+  int num;
+
+  @override
+  Future<void> onLoad() async {
+    print("triangle");
+    paint = Paint()..color = trianglelist[num]["color"];
+
+    anchor = Anchor.topCenter;
+
+    add(PolygonHitbox([
+      Vector2(trianglelist[num]["pos1_x"], trianglelist[num]["pos1_y"]),
+      Vector2(trianglelist[num]["pos2_x"], trianglelist[num]["pos2_y"]),
+      Vector2(trianglelist[num]["pos3_x"], trianglelist[num]["pos3_y"]),
+    ])
+      ..collisionType = CollisionType.passive);
+  }
+
+  @override
+  Future<void> render(Canvas canvas) async {
+    super.render(canvas);
+    final path = Path();
+    path.moveTo(trianglelist[num]["pos1_x"], trianglelist[num]["pos1_y"]); // 頂点
+    path.lineTo(trianglelist[num]["pos2_x"], trianglelist[num]["pos2_y"]); // 左下
+    path.lineTo(trianglelist[num]["pos3_x"], trianglelist[num]["pos3_y"]); // 右下
+    path.close(); // 閉じる
+
+    // パスをキャンバスに描画
+    canvas.drawPath(path, paint);
+  }
+}
+
+```
 
 
 ## **当たり判定**
@@ -211,14 +250,8 @@ Future<void> objectRemove() async {
     
     switch (currentScene) {
       case 1:
-        await triangleRemove(
-            Color.fromARGB(255, 211, 46, 46),
-            screenSize.x / 2,
-            Y_GROUND_POSITION - 50,
-            screenSize.x / 2 - 50,
-            Y_GROUND_POSITION,
-            screenSize.x / 2 + 50,
-            Y_GROUND_POSITION);
+        await add(triangle(0));
+        await add(triangle(1));
       //省略
     }            
 ```
