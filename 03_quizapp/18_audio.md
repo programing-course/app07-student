@@ -34,7 +34,7 @@ child: Column(
 
 ```dart
 
-dev_dependencies:
+dependencies:
   flutter_test:
     sdk: flutter
   audioplayers: ^6.0.0 //ここに追加
