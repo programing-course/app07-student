@@ -107,6 +107,13 @@ onCollisionでオブジェクトに当たったかどうか検知する
 
 ```dart
 
+bool isOnGround = false; // 地面にいるかの判定
+//変数宣言
+bool isInHole = false;
+double hole_X = 0.0;
+
+//省略
+
 if (other is hole) {
   //上にいる時
   if (this.x > other.x + this.width / 2 &&
