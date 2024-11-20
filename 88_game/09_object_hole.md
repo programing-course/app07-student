@@ -81,9 +81,6 @@ class hole extends RectangleComponent
   int num;
   @override
   Future<void> onLoad() async {
-    holenum.add(holelist[num]["start_pos_x"]);
-    holenum.add(holelist[num]["end_pos_x"]);
-
     size = Vector2(holelist[num]["size_x"], holelist[num]["size_y"]);
     position = Vector2(holelist[num]["pos_x"], holelist[num]["pos_y"]);
     paint = Paint()..color = holelist[num]["color"];
