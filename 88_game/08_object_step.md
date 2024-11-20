@@ -119,7 +119,7 @@ if (other is step) {
         final playerBottom = this.y + this.height;
         final playerTop = this.y;
 
-        final obstacleRight = other.x + other.width + this.width;
+        final obstacleRight = other.x + other.width + this.width/2;
         final obstacleLeft = other.x;
         final obstacleBottom = other.y + other.height;
         final obstacleTop = other.y;
@@ -140,7 +140,7 @@ if (other is step) {
 
         if (minDistance == rightDistance) {
           //左から当たった
-          position.x = other.x;
+          position.x = other.x -this.width/2;
         } else if (minDistance == leftDistance) {
           //右から当たった
           position.x = other.x + other.width + this.width/2;
