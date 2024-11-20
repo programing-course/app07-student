@@ -47,7 +47,7 @@ assets/audioフォルダを作成し、pubspec.yamlの設定
 
 assets:
     - images/
-    - assets/audio/Onoma-Sparkle.mp3
+    - assets/audio/
 
 ```
 
