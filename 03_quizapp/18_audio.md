@@ -80,7 +80,7 @@ import 'package:audioplayers/audioplayers.dart';
     "answer3": "回答３", //選択肢３
     "answer4": "回答４", //選択肢４
     "correct": 1, //回答番号
-    "music": "Onoma-Sparkle.mp3" //音楽ファイル
+    "music": "audio/Onoma-Sparkle.mp3" //音楽ファイル
   },
 
 ```
