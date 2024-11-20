@@ -102,7 +102,7 @@ Container(
           ],
         );
       }),
-      maxY: 1000, // Y軸の最大値
+      maxY: 500, // Y軸の最大値
       gridData: FlGridData(show: true), // グリッド線を表示
       borderData: FlBorderData(show: true),
       alignment: BarChartAlignment.spaceAround, // 棒グラフの配置
