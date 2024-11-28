@@ -150,4 +150,14 @@ void checkGroundCollision() {
     }
   }
 
- ``` 
+ ```
+
+```dart
+
+if (point.y == screenHitBoxRect.bottom && !isCollidedScreenHitboxY) {
+  print("===下===");
+  isCollidedScreenHitboxY = true;
+  currentScene = RetryStage;
+  removeFromParent();
+}
+```
