@@ -152,7 +152,11 @@ void checkGroundCollision() {
 
  ```
 
-```dart
+### **⑥下に落ちたらリスタート**
+
+removeFromParent()が実行されると、onRemove()関数へ飛ぶ
+
+ ```dart
 
 if (point.y == screenHitBoxRect.bottom && !isCollidedScreenHitboxY) {
   print("===下===");
@@ -160,4 +164,3 @@ if (point.y == screenHitBoxRect.bottom && !isCollidedScreenHitboxY) {
   currentScene = RetryStage;
   removeFromParent();
 }
-```
