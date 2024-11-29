@@ -279,7 +279,7 @@ Future<void> StringToDate(arglist) async {
       todoList[index]['check'] = _checked;
     }
 
-    //引数にリストを渡す
+    //④引数にリストを渡す
     await saveData_todoList(todoList);
   }
 
@@ -304,7 +304,7 @@ Future<void> StringToDate(arglist) async {
 
     maxindex++;
 
-    //引数にリストを渡す
+    //④引数にリストを渡す
     await saveData_todoList(todoList);
   }
 
