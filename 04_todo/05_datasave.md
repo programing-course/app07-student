@@ -185,25 +185,38 @@ final SharedPreferences prefs = await SharedPreferences.getInstance();
 
 **①データSave関数**
 
+**【datasave.dart】を新規作成**
+
+
 ```dart
 
-Future<void> saveData_todoList() async {
+//パッケージのインポート
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'config.dart';
+
+```
+
+```dart
+
+Future<void> saveData_todoList(arglist) async {
   //日付型をString型に変換
-  await DateToString(todoList);
+  await DateToString(arglist);
   //SharedPreferences宣言
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // JSON文字列に変換
-  String jsonString = jsonEncode(todoList); 
-  //キー「todoList」にデータ保存
+  String jsonString = jsonEncode(arglist); 
+  //キー「todoList」にデータ保存(キーの名前は何でも良い)
   await prefs.setString('todoList', jsonString);
-  await prefs.setString('maxindex', maxindex.toString());
   //日付を文字列から日付型に戻す
-  await StringToDate(todoList);
+  await StringToDate(arglist);
 }
 
 ```
 
 **②日付型をString型に変換関数**
+
+**【datasave.dart】**
 
 ```dart
 
@@ -226,6 +239,8 @@ Future<void> DateToString(arglist) async {
 
 **③String型を日付型に戻す関数**
 
+**【datasave.dart】**
+
 ```dart
 
 Future<void> StringToDate(arglist) async {
@@ -244,7 +259,60 @@ Future<void> StringToDate(arglist) async {
 
 ```
 
-**④日付型を含むデータの読み込み**
+**【dialog.dart】**
+
+**④関数呼び出し**
+
+```dart
+
+// 更新
+  Future<void> Update() async {
+    // 該当データのインデックス番号を取得
+    int index = todoList.indexWhere((todo) => todo['idx'] == _idx);
+
+    if (index != -1) {
+      todoList[index]['date'] = _selectedDate;
+      todoList[index]['title'] = _title;
+      todoList[index]['memo'] = _memo;
+      todoList[index]['category'] = _category;
+      todoList[index]['star'] = _starchecked;
+      todoList[index]['check'] = _checked;
+    }
+
+    //引数にリストを渡す
+    await saveData_todoList(todoList);
+  }
+
+
+```
+
+```dart
+
+// 登録
+  Future<void> Entry() async {
+    // 保存用に文字列変換
+
+    todoList.add({
+      'idx': maxindex,
+      'date': _selectedDate,
+      'title': _title,
+      'memo': _memo,
+      'category': _category,
+      'star': _starchecked,
+      'check': _checked
+    });
+
+    maxindex++;
+
+    //引数にリストを渡す
+    await saveData_todoList(todoList);
+  }
+
+```
+
+**【datasave.dart】**
+
+**⑤日付型を含むデータの読み込み**
 
 ```dart
 
