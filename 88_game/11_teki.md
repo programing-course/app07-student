@@ -66,6 +66,10 @@ List<Map<String, dynamic>> tekilist = [
 ### **②class呼び出し**
 
 ```dart
+import 'teki.dart';
+```
+
+```dart
 
 // オブジェクトの描画
   switch (currentScene) {
