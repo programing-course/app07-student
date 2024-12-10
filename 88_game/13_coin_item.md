@@ -101,9 +101,11 @@ List<Map<String, dynamic>> coinlist = [
 ```dart
 
 Future<void> coinRemove(num) async {
+  //指定した数分、縦横に並べる
   for (int i = 0; i < coinlist[num]["count_y"]; i++) {
     for (int j = 0; j < coinlist[num]["count_x"]; j++) {
       await add(coin(num, j, i));
+      //blockがtrueの場合はblockクラスも呼び出す
       if (coinlist[num]["block"]) {
         await add(coin_block(num, j, i));
       }
