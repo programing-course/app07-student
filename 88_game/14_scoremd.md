@@ -194,3 +194,141 @@ double elapsedTime = 0.0;
   }
 
 ```
+
+### **⑦ゴールのデータ設定**
+
+**【setting.dart】**
+
+```dart
+
+List<Map<String, dynamic>> flaglist = [
+  {
+    "idx": 0,
+    "size_x": 50,
+    "size_y": 50,
+    "pos_x": PLAYER_SIZE_X,
+    "pos_y": Y_GROUND_POSITION - PLAYER_SIZE_Y / 2,
+    "flag_img": "checkflag.png",
+    "type": "check",//⭐️追加
+  },
+  //⭐️追加↓
+  {
+    "idx": 1,
+    "size_x": 50,
+    "size_y": 50,
+    "pos_x": screenSize.x - 50,
+    "pos_y": Y_GROUND_POSITION - PLAYER_SIZE_Y / 2,
+    "flag_img": "redflag.png",
+    "type": "goal",
+  },
+];
+
+```
+
+### **⑧ゴールのフラッグ呼び出し**
+
+**【game.dart】**
+
+```dart
+
+switch (currentScene) {
+    case 0:
+      await add(flag(1));
+      break;
+    case 1:
+      //省略
+    default:
+  }
+}
+
+```
+
+### **⑨flagクラスにtypeを追加**
+
+**【object.dart】**
+
+```dart
+
+class flag extends SpriteComponent
+    with HasGameRef<MainGame>, CollisionCallbacks {
+  flag(this.num);
+  int num;
+
+  var type = "";//⭐️追加
+  @override
+  Future<void> onLoad() async {
+    type = flaglist[num]["type"];//⭐️追加
+    sprite = await gameRef.loadSprite(flaglist[num]["flag_img"]);
+    size = Vector2(flaglist[num]["size_x"], flaglist[num]["size_y"]);
+    position = Vector2(flaglist[num]["pos_x"], flaglist[num]["pos_y"]);
+    anchor = Anchor.center;
+
+    add(RectangleHitbox());
+  }
+}
+
+```
+
+### **⑩ゴールフラッグに触れたら**
+
+**【player.dart】**
+
+onCollisionStartの中を修正
+
+```dart
+
+if (other is flag) {
+  //⭐️追加 goalの場合を追加
+  if (other.type == "goal") {
+    gameRef.goaltextremove(); //ゴールの文字を出す
+    stopMovement(); //動きを止める
+    isGoal = true; //タイマーを止める
+    removeFromParent();
+  } else {
+    // 中間地点まできたら更新
+    RetryStage = currentScene;
+  }
+}
+
+```
+
+### **⑩ゴールの文字表示**
+
+
+**【text.dart】**
+
+```dart
+
+class goaltext extends TextComponent with HasGameRef<MainGame> {
+  @override
+  Future<void> onLoad() async {
+    position = Vector2(screenSize.x / 2, 50);
+    text = "GOAL  ";
+
+    textRenderer = TextPaint(
+        style: TextStyle(
+            fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black));
+  }
+
+  @override
+  Future<void> render(Canvas canvas) async {
+    super.render(canvas);
+  }
+}
+
+```
+
+
+
+### **⑧ゴール呼び出し**
+
+**【game.dart】**
+
+```dart
+
+// ゴール表示
+  Future<void> goaltextremove() async {
+    await add(goaltext());
+  }
+
+```
