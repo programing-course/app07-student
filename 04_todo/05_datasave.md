@@ -327,7 +327,8 @@ Future<void> load_todoList() async {
         // `item`をそのままコピーして特定のキーだけ変更
         return {
           ...item as Map<String, dynamic>, // `item`の全てのキーと値を展開
-          'date': DateTime.parse(item['date']), // `date`キーだけDateTimeに変換
+          if (item.containsKey('date'))
+            'date': DateTime.parse(item['date']), // `date`キーだけDateTimeに変換
         };
       }).toList();
     } else {
