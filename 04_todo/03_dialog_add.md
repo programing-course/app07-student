@@ -303,6 +303,10 @@ _selectDate関数の下にEntry関数を追加
 
 ```dart
 
+//パッケージをインポート
+import 'dart.math';
+
+//省略
 
 // 登録
   Future<void> Entry() async {
