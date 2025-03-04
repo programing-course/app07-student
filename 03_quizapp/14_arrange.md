@@ -62,7 +62,7 @@ https://webgakushu.com/flutter/quiz_new14/
     selectedBtn = 0;
     resultText = "";
     correctCnt = 0;
-    String hint = "";
+    hint = "";
   }
 
   //省略
