@@ -99,6 +99,14 @@ List<Map<String, dynamic>> todoList = [
 
 ```
 
+**【todo.dart】**
+
+```dart
+
+import 'config.dart';
+
+```
+
 ### **③ブラウザの大きさを取得**
 
 ![base1-4](img/02_todolist1-4.png)
