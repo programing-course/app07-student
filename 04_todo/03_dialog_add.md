@@ -307,6 +307,18 @@ _selectDate関数の下にEntry関数を追加
 import 'dart:math';
 import 'config.dart';
 
+class _DialogPageState extends State<DialogPage> {
+  // 今日の日付を設定
+  DateTime _selectedDate = DateTime.now();
+  // ダイアログ内で使う変数宣言
+  int _idx = 0;
+  String _title = "";
+  String _memo = "";
+  int _category = 0;
+  bool _starchecked = false;
+  bool _checked = false;
+  String _mode = ""; //②追加
+
 //省略
 
 // 登録
