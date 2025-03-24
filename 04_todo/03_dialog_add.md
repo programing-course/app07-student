@@ -304,7 +304,8 @@ _selectDate関数の下にEntry関数を追加
 ```dart
 
 //パッケージをインポート
-import 'dart.math';
+import 'dart:math';
+import 'config.dart';
 
 //省略
 
