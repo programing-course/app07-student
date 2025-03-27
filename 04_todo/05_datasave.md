@@ -279,7 +279,7 @@ Future<void> StringToDate(arglist) async {
       todoList[index]['check'] = _checked;
     }
 
-    //④引数にリストを渡す
+    //引数にリストを渡す
     await saveData_todoList(todoList);
   }
 
@@ -304,7 +304,7 @@ Future<void> StringToDate(arglist) async {
 
     maxindex++;
 
-    //④引数にリストを渡す
+    //引数にリストを渡す
     await saveData_todoList(todoList);
   }
 
@@ -327,8 +327,7 @@ Future<void> load_todoList() async {
         // `item`をそのままコピーして特定のキーだけ変更
         return {
           ...item as Map<String, dynamic>, // `item`の全てのキーと値を展開
-          if (item.containsKey('date'))
-            'date': DateTime.parse(item['date']), // `date`キーだけDateTimeに変換
+          'date': DateTime.parse(item['date']), // `date`キーだけDateTimeに変換
         };
       }).toList();
     } else {
@@ -338,5 +337,30 @@ Future<void> load_todoList() async {
     print('Error converting date: $e');
   }
 }
+
+```
+
+**todolist.dart】**
+
+**⑥データ読み込み関数を呼び出す**
+
+```dart
+
+class _TodoListPageState extends State<TodoListPage> {
+  double? _deviceWidth, _deviceHeight; //ブラウザの横幅と高さ
+
+  // ②追加
+  void initState() {
+    // 保存データをとってくる
+    loadData();
+    super.initState();
+  }
+
+  Future<void> loadData() async {
+    await load_todoList();
+    setState(() {});
+  }
+
+  //省略
 
 ```
