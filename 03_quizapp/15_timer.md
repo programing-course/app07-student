@@ -65,6 +65,7 @@ class _QuestionPageState extends State<QuestionPage> {
     selectedBtn = 0;
     resultText = "";
     correctCnt = 0;
+    _currentSec = 10;
 
     //④タイマースタート
     countTimer();
