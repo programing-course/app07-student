@@ -155,3 +155,83 @@ Future<void> sort(agelist, agekey) async {
 }
 
 ```
+
+**【todo.dart】**
+
+データ抽出
+
+```dart
+
+//⭐️ 選択されたボタンにより、表示するデータを切り替える
+  void DataSelect() {
+    sort(todoList, sortkey);
+    if (_selectbutton == 0) {
+      displaylist = todoList.where((todo) => todo['check'] == false).toList();
+    } else if (_selectbutton == 1) {
+      displaylist = todoList
+          .where((todo) => todo['star'] == true && todo['check'] == false)
+          .toList();
+    } else if (_selectbutton == 2) {
+      displaylist = todoList.where((todo) => todo['check'] == true).toList();
+    } else {
+      sort(todoList, "date");
+      displaylist = todoList;
+    }
+  }
+
+
+
+Container(
+  child: ToggleButtons(
+    color: Color.fromARGB(255, 30, 186, 128),
+    fillColor: Color.fromARGB(255, 104, 200, 101),
+    borderColor: Color.fromARGB(255, 0, 113, 4),
+    splashColor: Color.fromARGB(255, 171, 205, 159),
+    selectedBorderColor: const Color.fromARGB(255, 40, 198, 151),
+    selectedColor: Colors.white,
+    borderRadius: const BorderRadius.all(Radius.circular(10)),
+    isSelected: _isState,
+    onPressed: (index) {
+      setState(() {
+        for (var i = 0; i < _isState.length; i++) {
+          if (i == index) {
+            _isState[i] = true; //選択の状態を更新
+            _selectbutton = index; //選択されたボタン
+          } else {
+            _isState[i] = false;
+          }
+        }
+        DataSelect();//⭐️追加
+      });
+    },
+    children: [
+      for (var i = 0; i < stateList.length; i++) ...{
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text('${stateList[i]}'),
+        ),
+      }
+    ],
+  ),
+),
+
+//省略
+
+
+floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          var RtnText = await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return DialogPage(-1);
+              });
+          if (RtnText != null) {
+            setState(() {
+              DataSelect();//⭐️追加
+            });
+          }
+        },
+        child: Icon(Icons.add),
+      ),
+
+```
