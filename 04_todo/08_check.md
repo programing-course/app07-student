@@ -160,7 +160,6 @@ Container(
           //⭐️追加↓↓↓↓↓
       : TextButton(
           onPressed: () async {
-            await readd(displaylist[index]["idx"]);
             setState(() {
               // 表示を最新にする
               displaylist = todoList
