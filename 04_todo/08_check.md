@@ -119,15 +119,7 @@ child: GestureDetector(
           var RtnText = await showDialog(
               context: context,
               builder: (BuildContext context) {
-                return DialogPage(
-                    displaylist[index]["idx"],
-                    "UPD",
-                    displaylist[index]["date"],
-                    displaylist[index]["title"],
-                    displaylist[index]["memo"],
-                    displaylist[index]["category"] ?? 0,
-                    displaylist[index]["star"],
-                    displaylist[index]["check"]);
+                return DialogPage(displaylist[index]['idx']);
               });
           if (RtnText != null) {
             setState(() {
