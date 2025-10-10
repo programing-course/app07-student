@@ -3,8 +3,6 @@
 
 **ストック画面を作る**
 
-![category](img/09_category1-1.png)
-
 **①カテゴリーデータ作成**
 
 **【stocklist.dart】**
