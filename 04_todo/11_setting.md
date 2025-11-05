@@ -156,3 +156,23 @@ void initState() {
   }
 
 ```
+
+**⑤追加ボタン**
+
+```dart
+
+children: [
+  Container(
+  child: IconButton(
+      icon: Icon(Icons.add_outlined),
+      onPressed: () {
+        setState(() {
+            
+            _titleController.add(TextEditingController(text: ''));
+            category_count = _titleController.length;
+          
+        });
+      }),
+),
+
+```
