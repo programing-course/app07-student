@@ -176,3 +176,181 @@ children: [
 ),
 
 ```
+
+**⑥保存ボタン**
+
+一覧の下に追加
+
+**【setting.dart】**
+
+```dart
+
+TextButton(
+  onPressed: () async {
+    Save_Category();
+  },
+  child: Text('保存'),
+)
+
+```
+
+**⑦関数追加**
+
+**【setting.dart】**
+
+```dart
+
+Future<void> Save_Category() async {
+    categorylist.clear();
+    for (var i = 0; i < category_count; i++) {
+      if (_titleController[i].text != "") {
+        categorylist.add(_titleController[i].text);
+      }
+    }
+
+    await saveData_categoryList();
+  }
+
+```
+
+
+**【config.dart】**
+
+categorylistのデータをコメントアウト
+
+```dart
+List<String> categorylist = [
+  //"調味料",
+  //"肉・魚",
+  //"野菜",
+  //"卵乳米",
+  //"加工品",
+  //"お菓子",
+  //"日用品",
+  //"その他",
+  //"全て"
+];
+
+```
+
+**⑧データ保存**
+
+**【datasave.dart】**
+
+```dart
+
+Future<void> saveData_categoryList() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String jsonString = jsonEncode(categorylist);
+  await prefs.setString('categoryList', jsonString);
+}
+
+/// categoryList を読み込み
+Future<void> loadData_categoryList() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? jsonString = prefs.getString('categoryList');
+
+  if (jsonString != null) {
+    List<dynamic> jsonData = jsonDecode(jsonString);
+    categorylist = jsonData.map((e) => e.toString()).toList();
+  } else {
+    categorylist = []; // データがない場合は空リスト
+  }
+}
+
+```
+
+**⑨データ呼び出し**
+
+**【main.dart】**
+
+```dart
+
+import 'datesave.dart'; //⭐️保存
+
+class _NaviAppState extends State<NaviApp> {
+  int _selectedIndex = 0;
+
+  void initState() {
+    loadDate();
+  }
+
+  Future<void> loadDate() async {
+    await loadData_categoryList();
+  }
+
+  //省略
+
+}
+
+```
+
+**⑩カテゴリの追加は全ての前**
+
+カテゴリの枠を追加するのは「全て」枠の上にする
+
+**【setting.dart】**
+
+```dart
+
+Container(
+  child: MouseRegion(
+    cursor: SystemMouseCursors.click,
+    child: GestureDetector(
+        child: Icon(
+          Icons.add_outlined,
+        ),
+        onTap: () async {
+          setState(() {
+            //⭐️修正
+            _titleController.insert(categorylist.length - 1,
+                TextEditingController(text: ''));
+            category_count++;
+          });
+        }),
+  ),
+),
+
+```
+
+**11.色の追加**
+
+**【setting.dart】**
+
+```dart
+
+void _showColorPicker(BuildContext context, int index) {
+    Color pickerColor = ColorList[index];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Select a Color"),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: pickerColor,
+              onColorChanged: (Color color) {
+                setState(() {
+                  pickerColor = color;
+                });
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                setState(() {
+                  ColorList[index] = pickerColor;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+```
