@@ -195,6 +195,16 @@ class _DialogPageState extends State<DialogPage> {
 **【dialog.dart】**
 
 ```dart
+class _DialogPageState extends State<DialogPage> {
+  // 今日の日付を設定
+  DateTime _selectedDate = DateTime.now();
+  // ④ダイアログ内で使う変数宣言
+  int _idx = 0;
+  String _title = "";
+  String _memo = "";
+  int _category = 0;
+  bool _starchecked = false;
+  bool _checked = false;
 
 return AlertDialog(
       content: SingleChildScrollView(
