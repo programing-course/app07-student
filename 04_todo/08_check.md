@@ -119,7 +119,15 @@ child: GestureDetector(
           var RtnText = await showDialog(
               context: context,
               builder: (BuildContext context) {
-                return DialogPage(displaylist[index]['idx']);
+                return DialogPage(
+                    displaylist[index]["idx"],
+                    "UPD",
+                    displaylist[index]["date"],
+                    displaylist[index]["title"],
+                    displaylist[index]["memo"],
+                    displaylist[index]["category"] ?? 0,
+                    displaylist[index]["star"],
+                    displaylist[index]["check"]);
               });
           if (RtnText != null) {
             setState(() {
@@ -160,6 +168,7 @@ Container(
           //⭐️追加↓↓↓↓↓
       : TextButton(
           onPressed: () async {
+            await readd(displaylist[index]["idx"]);
             setState(() {
               // 表示を最新にする
               displaylist = todoList
