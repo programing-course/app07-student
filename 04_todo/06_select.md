@@ -3,6 +3,12 @@
 
 **リストの抽出と並び替え**
 
+**①抽出ボタンの追加**
+
+**【todo.dart】**
+
+Toggleボタン、ソートボタンの追加
+
 ```dart
 
   Row(
@@ -80,6 +86,8 @@
 
 ```
 
+**②変数宣言**
+
 **【config.dart】**
 
 ```dart
@@ -94,6 +102,8 @@ String sortkey = "";
 
 ```
 
+**③変数宣言**
+
 **【todo.dart】**
 
 ```dart
@@ -107,6 +117,12 @@ class _TodoListPageState extends State<TodoListPage> {
   var _selectbutton = 0; //どのボタンを選択したか
 
 ```
+
+**④並び替えのプログラム**
+
+ - 【check】済データ>日付の昇順
+ - 【start】⭐️データ>日付の昇順
+ - 【date】日付の昇順
 
 **【config.dart】**
 
@@ -156,11 +172,94 @@ Future<void> sort(agelist, agekey) async {
 
 ```
 
+**⑤並び替え後の表示**
+
 **【todo.dart】**
 
-データ抽出
+データ保存用のtodoListと表示のdisplaylist
 
 ```dart
+
+//省略
+
+  Future<void> loadDate() async {
+    await load_todoList();
+    sortkey = "check";
+    //⭐️追加　元のデータlistで並び替え
+    await sort(todoList, sortkey);
+    //⭐️　表示ようのlistに入れる
+    setState(() {
+      displaylist = todoList.where((todo) => todo['check'] == false).toList();
+    });
+  }
+
+  //省略
+
+  child: ListView.builder(
+    itemCount: displaylist.length, //⭐️修正
+    itemBuilder: (context, index) {
+      return GestureDetector(
+          onTap: () async {
+            var RtnText = await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return DialogPage(displaylist[index]['idx']); //⭐️修正
+                });
+            if (RtnText != null) {
+              setState(() {});
+            }
+          },
+          child: Card(
+            child: ListTile(
+                title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Icon(Icons.star_outlined,
+                      color: displaylist[index]['star'] //⭐️修正
+                          ? Colors.red
+                          : Colors.grey),
+                ),
+                Container(
+                  child: Text(
+                      '${displaylist[index]['date'].month}/${displaylist[index]['date'].day}'), //⭐️修正
+                ),
+                Container(
+                  width: 300,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(displaylist[index]['title']), //⭐️修正
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(displaylist[index]['memo']), //⭐️修正
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 70,
+                  child: Checkbox(
+                      value: displaylist[index]['check'], //⭐️修正
+                      onChanged: (value) {}),
+                ),
+              ],
+            )
+          ),
+        )
+      );
+    }
+  ),
+
+```
+
+**⑥データ抽出**
+
+```dart
+
+//省略
 
 //⭐️ 選択されたボタンにより、表示するデータを切り替える
   void DataSelect() {
@@ -179,7 +278,7 @@ Future<void> sort(agelist, agekey) async {
     }
   }
 
-
+//省略
 
 Container(
   child: ToggleButtons(
@@ -201,7 +300,7 @@ Container(
             _isState[i] = false;
           }
         }
-        DataSelect();//⭐️追加
+        DataSelect(); //⭐️追加
       });
     },
     children: [
@@ -217,21 +316,21 @@ Container(
 
 //省略
 
-
 floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          var RtnText = await showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return DialogPage(-1);
-              });
-          if (RtnText != null) {
-            setState(() {
-              DataSelect();//⭐️追加
-            });
-          }
-        },
-        child: Icon(Icons.add),
-      ),
+  onPressed: () async {
+    var RtnText = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DialogPage(-1);
+        });
+    if (RtnText != null) {
+      setState(() {
+        DataSelect(); //⭐️追加
+      });
+    }
+  },
+  child: Icon(Icons.add),
+),
+
 
 ```
