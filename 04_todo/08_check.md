@@ -237,16 +237,9 @@ Container(
 Future<void> readd(idx) async {
   int index = todoList.indexWhere((todo) => todo['idx'] == idx);
   if (index != -1) {
-    Map<String, dynamic> newTodo = {
-      'idx': index,
-      'date': todoList[index]['date'],
-      'title': todoList[index]['title'],
-      'memo': todoList[index]['memo'],
-      'star': false,
-      'check': false, // checkをfalseにリセット
-    };
 
-    todoList[index] = newTodo;
+    todoList[index]['check'] = false;
+    todoList[index]['stock'] = 0;
 
     await saveData_todoList(todoList);
   }
