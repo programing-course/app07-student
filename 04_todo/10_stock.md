@@ -243,3 +243,38 @@ class _StockListPageState extends State<StockListPage> {
 
 
 ```
+**【datasave.dart】**
+
+```dart
+
+Future<void> saveData_stockList() async {
+  await DateToString(stockList);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String jsonString = jsonEncode(stockList); // JSON文字列に変換
+  await prefs.setString('stockList', jsonString);
+  await StringToDate(stockList);
+}
+
+Future<void> load_stockList() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? jsonString = prefs.getString('stockList'); // 保存されたJSON文字列を取得
+  try {
+    if (jsonString != null) {
+      print(jsonString);
+      List<dynamic> jsonResponse = jsonDecode(jsonString);
+      stockList = jsonResponse.map((item) {
+        // `item`をそのままコピーして特定のキーだけ変更
+        return {
+          ...item as Map<String, dynamic>, // `item`の全てのキーと値を展開
+          'date': DateTime.parse(item['date']), // `date`キーだけDateTimeに変換
+        };
+      }).toList();
+    } else {
+      stockList = [];
+    }
+  } catch (e) {
+    print('Error converting date: $e');
+  }
+}
+
+```
