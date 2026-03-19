@@ -7,6 +7,17 @@
 
 **①カテゴリーデータ作成**
 
+**【config.dart】**
+
+```dart
+
+// 登録リスト
+List<Map<String, dynamic>> todoList = [];
+//⭐️表示用のリスト
+List<Map<String, dynamic>> displaylist = [];
+
+```
+
 **【stocklist.dart】**
 
 
